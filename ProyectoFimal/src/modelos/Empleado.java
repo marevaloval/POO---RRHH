@@ -1,6 +1,6 @@
 package modelos;
 
-public class Empleado extends Usuario {
+public class Empleado {
     private String codigoEmpleado;
 
     public String getCodigoEmpleado() {
@@ -12,7 +12,7 @@ public class Empleado extends Usuario {
     }
 
     public Empleado(String codigoEmpleado, String nombre, String apellido, String user, String password) {
-        super(nombre, apellido, user, password);
+        //super(nombre, apellido, user, password);
         this.codigoEmpleado = codigoEmpleado;
     }
 }

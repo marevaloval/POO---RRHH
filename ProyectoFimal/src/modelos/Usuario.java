@@ -1,44 +1,28 @@
 package modelos;
 
 public class Usuario {
-    private String nombre,apellido,user,password;
+    private String usuario;
+    private String contrasenha;
 
-    public String getApellido() {
-        return apellido;
+    public Usuario(String usuario, String contrasenha) {
+        this.usuario = usuario;
+        this.contrasenha = contrasenha;
     }
 
-    public void setApellido(String apellido) {
-        this.apellido = apellido;
+    public String getContrasenha() {
+        return contrasenha;
     }
 
-    public String getNombre() {
-        return nombre;
+    public void setContrasenha(String contrasenha) {
+        this.contrasenha = contrasenha;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public String getUsuario() {
+        return usuario;
     }
 
-    public String getPassword() {
-        return password;
-    }
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
+    }   
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getUser() {
-        return user;
-    }
-
-    public void setUser(String user) {
-        this.user = user;
-    }
-
-    public Usuario(String nombre, String apellido, String user, String password) {
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.user = user;
-        this.password = password;
-    }
 }
