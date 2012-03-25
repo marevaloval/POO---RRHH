@@ -5,23 +5,37 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class AdmDeclaracionesJuradasTest {
-    AdmDeclaracionesJuradas admDeclaracionesJuradas = new AdmDeclaracionesJuradas();
+    AdmDeclaracionesJuradas admDeclaracionesJuradas = new AdmDeclaracionesJuradas();    
     
     @Test
-    public void SiNoIngresoElResponsableDebeDarError() {
-        assertFalse(admDeclaracionesJuradas.verificarResponsable(null));
-        System.out.println("Responsable no puede estar vacio");
+    public void registroDeclaracionJurada() {
+        admDeclaracionesJuradas.registrarDeclaracionJurada(1,"Luis Caiguaraico", "declaración", "25/03/2012");
+        assertEquals(1,admDeclaracionesJuradas.cantidadDeclaracionesJuradas());
     }
-
+    
     @Test
-    public void SiNoIngresoElMotivoDebeDarError() {
-        assertFalse(admDeclaracionesJuradas.verificarMotivo(null));
-        System.out.println("Motivo no puede estar vacio");
+    public void eliminarDeclaracionJurada() {
+        admDeclaracionesJuradas.registrarDeclaracionJurada(1,"Luis Caiguaraico", "declaración", "25/03/2012");
+        admDeclaracionesJuradas.registrarDeclaracionJurada(2,"Miguel Arévalo", "declaración", "25/03/2012");
+        admDeclaracionesJuradas.eliminarDeclaracionJurada(1);
+        assertEquals(1, admDeclaracionesJuradas.cantidadDeclaracionesJuradas());
     }
-
+    
     @Test
-    public void SiNoIngresoLaFechaVencimientoDebeDarError() {
-        assertFalse(admDeclaracionesJuradas.verificarFechaVencimiento(null));
-        System.out.println("Fecha de vencimiento no puede estar vacio");
+    public void registroUsuarioDeclaracionJurada() {
+        admDeclaracionesJuradas.registrarDeclaracionJurada(1, "Luis Caiguaraico", "declaración", "25/03/2012");
+        admDeclaracionesJuradas.registrarUsuarioDeclaracionJurada(1, "user1");
+        assertEquals(1, admDeclaracionesJuradas.cantidadUsuariosDeclaracionJurada(1));
     }
+    
+    @Test
+    public void eliminaUsuarioDeclaracionJurada() {
+        admDeclaracionesJuradas.registrarDeclaracionJurada(1, "Luis Caiguaraico", "declaración", "25/03/2012");
+        admDeclaracionesJuradas.registrarUsuarioDeclaracionJurada(1, "user1");
+        admDeclaracionesJuradas.registrarUsuarioDeclaracionJurada(1, "user2");
+        admDeclaracionesJuradas.eliminarUsuarioDeclaracionJurada(1, "user1");
+        assertEquals(1, admDeclaracionesJuradas.cantidadUsuariosDeclaracionJurada(1));
+    }
+    
+    
 }

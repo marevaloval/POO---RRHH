@@ -8,22 +8,41 @@ import modelos.Usuario;
 import java.util.ArrayList;
 
 public class AdmUsuarios {
-    
-    Usuario objUsuario;
+        
     ArrayList<Usuario> arUsuario;
 
     public AdmUsuarios() {
         arUsuario = new ArrayList<Usuario>();
     }
     
-    // Ingresa un nuevo usuario
+    // Registrar usuario
     public void registrarUsuario(String usuario, String contrasenha) {
-        objUsuario = new Usuario(usuario, contrasenha);
+        Usuario objUsuario = new Usuario(usuario, contrasenha);
         arUsuario.add(objUsuario);
+    }
+    
+    // Eliminar usuaro
+    public void eliminarUsuario(String usuario) {
+        arUsuario.remove(buscaUsuario(usuario));
+    }
+    
+    // Devuelve la cantidad de usuarios ingresados
+    public int cantidadUsuarios() {
+        return arUsuario.size();
+    }
+    
+    // Valida que el usuario/contraseña exista
+    public boolean validaUsuarioContrasenha(String usuario, String contrasenha) {
+        for (Usuario user: arUsuario) {
+            if (user.getUsuario().equals(usuario) && user.getContrasenha().equals(contrasenha)) {
+                return true;
+            }
+        }
+        return false;
     }    
     
-    // Validaque el usuario ingresado no sea vacío
-    public boolean validaUsuario(String usuario) {
+    // Valida que el usuario ingresado no sea vacío
+    private boolean validaUsuario(String usuario) {
         if (usuario.equals("")) {
             return false;
         } else {
@@ -32,28 +51,21 @@ public class AdmUsuarios {
     }
     
     // Valida que la contraseña ingresa no sea vacía
-    public boolean validaContrasenha(String contrasenha) {
+    private boolean validaContrasenha(String contrasenha) {
         if (contrasenha.equals("")) {
             return false;
         } else {
             return true;
         }                
-    }
-    
-    // Devuelve la cantidad de usuarios ingresados
-    public int getUsuarios() {
-        return arUsuario.size();
-    }
-    
-    
-    // Busca si el usuario ingresado existe
-    public boolean buscaUsuarioContrasenha(String usuario, String contrasenha) {
-        for (Usuario user: arUsuario) {
-            if (user.getUsuario().equals(usuario) && user.getContrasenha().equals(contrasenha)) {
-                return true;
+    }        
+       
+    private Usuario buscaUsuario(String usuario) {
+        for (Usuario objUsuario : arUsuario) {
+            if (objUsuario.getUsuario().equals(usuario)) {
+                return objUsuario;
             }
-        }
-        return false;
+        }        
+        return null;
     }
     
 }

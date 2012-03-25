@@ -1,14 +1,29 @@
 package modelos;
 
+import java.util.ArrayList;
+
 public class DeclaracionesJuradas {
+    
+    private int numero;
     private String responsable;
     private String motivo;
     private String fechaVencimiento;
+    private ArrayList<String> arUsuario;
 
-    public DeclaracionesJuradas(String responsable, String motivo, String fechaVencimiento) {
+    public DeclaracionesJuradas(int numero, String responsable, String motivo, String fechaVencimiento) {
+        this.numero = numero;
         this.responsable = responsable;
         this.motivo = motivo;
         this.fechaVencimiento = fechaVencimiento;
+        arUsuario = new ArrayList<String>();
+    }
+
+    public int getNumero() {
+        return numero;
+    }
+
+    public void setNumero(int numero) {
+        this.numero = numero;
     }
 
     public String getFechaVencimiento() {
@@ -34,4 +49,21 @@ public class DeclaracionesJuradas {
     public void setResponsable(String responsable) {
         this.responsable = responsable;
     }
+    
+    public ArrayList<String> getUsuarios() {
+        return arUsuario;
+    }
+
+    public void registrarUsuario(String usuario) {
+        arUsuario.add(usuario);
+    }
+    
+    public void elminarUsuario(String usuario) {
+        for (String usuarioLista : arUsuario) {
+            if (usuarioLista.equals(usuario)) {
+                arUsuario.remove(usuarioLista);
+            }
+        }
+    }
+        
 }
