@@ -9,6 +9,15 @@ public class DeclaracionesJuradas {
     private String motivo;
     private String fechaVencimiento;
     private ArrayList<String> arUsuario;
+    
+    private String cargo;
+    private String fechaAsumpcion;
+    private String tipo;
+    private String fechaReferencia;
+    private String comentario;
+    private String publicacion;
+    private String fechaDocumento;
+    private String numeroDocumento;
 
     public DeclaracionesJuradas(int numero, String responsable, String motivo, String fechaVencimiento) {
         this.numero = numero;
@@ -65,5 +74,69 @@ public class DeclaracionesJuradas {
             }
         }
     }
+
+    public String getCargo() {
+        return cargo;
+    }
+
+    public void setCargo(String cargo) {
+        this.cargo = cargo;
+    }
+
+    public String getComentario() {
+        return comentario;
+    }
+
+    public void setComentario(String comentario) {
+        this.comentario = comentario;
+    }
+
+    public String getFechaAsumpcion() {
+        return fechaAsumpcion;
+    }
+
+    public void setFechaAsumpcion(String fechaAsumpcion) {
+        this.fechaAsumpcion = fechaAsumpcion;
+    }
+
+    public String getFechaDocumento() {
+        return fechaDocumento;
+    }
+
+    public void setFechaDocumento(String fechaDocumento) {
+        this.fechaDocumento = fechaDocumento;
+    }
+
+    public String getFechaReferencia() {
+        return fechaReferencia;
+    }
+
+    public void setFechaReferencia(String fechaReferencia) {
+        this.fechaReferencia = fechaReferencia;
+    }
+
+    public String getNumeroDocumento() {
+        return numeroDocumento;
+    }
+
+    public void setNumeroDocumento(String numeroDocumento) {
+        this.numeroDocumento = numeroDocumento;
+    }
+
+    public String getPublicacion() {
+        return publicacion;
+    }
+
+    public void setPublicacion(String publicacion) {
+        this.publicacion = publicacion;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }        
         
 }
