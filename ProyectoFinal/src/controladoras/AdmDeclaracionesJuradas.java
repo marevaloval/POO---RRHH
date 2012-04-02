@@ -5,10 +5,17 @@ import modelos.DeclaracionesJuradas;
 
 public class AdmDeclaracionesJuradas {
     
-    private ArrayList<DeclaracionesJuradas> arDeclaraciones = new ArrayList<DeclaracionesJuradas>();    
+    private ArrayList<DeclaracionesJuradas> arDeclaraciones;
+
+    public AdmDeclaracionesJuradas() {
+        arDeclaraciones = new ArrayList<DeclaracionesJuradas>();
+    }
     
     // Registrar una nueva declaración jurada
     public void registrarDeclaracionJurada(int numeroDeclaracionJurada, String responsable, String motivo, String fechaVencimiento) {
+        if (verificarNumeroDeclaraionJurada(numeroDeclaracionJurada) == false) {
+            return;
+        }        
         if (verificarResponsable(responsable) == false) {
             return;
         }
@@ -48,7 +55,7 @@ public class AdmDeclaracionesJuradas {
     }
     
     // Mostrar usuarios de una declaración jurada
-    private ArrayList<String> mostarUsuariosDeclaracionJurada(int numeroDeclaracionJurada) {
+    private ArrayList<String> mostrarUsuariosDeclaracionJurada(int numeroDeclaracionJurada) {
         return buscaDeclaracionJurada(numeroDeclaracionJurada).getUsuarios();
     }
     
@@ -59,6 +66,14 @@ public class AdmDeclaracionesJuradas {
             }
         }
         return null;
+    }
+    
+    // Valida que el número de declaración jurada no sea cero
+    private boolean verificarNumeroDeclaraionJurada(int numeroDeclaracionJurada) {
+        if (numeroDeclaracionJurada == 0) {
+            return false;
+        }
+        return true;
     }
     
     // Valida que el campo Responsable no sea vacío
