@@ -6,15 +6,10 @@ package controladoras;
 
 import java.util.ArrayList;
 import modelos.CartaFianza;
+import modelos.Empleado;
 
 public class AdmCartaFianza {
-    
-    private ArrayList<CartaFianza> arCartasFianzas;
-
-    public AdmCartaFianza() {
-        arCartasFianzas = new ArrayList<CartaFianza>();
-    }
-    
+        
     public void registrarCartaFianza(int numeroCartaFianza, String proveedor) {
         if (verificarNumeroCartaFianza(numeroCartaFianza) == false) {
             return;
@@ -23,7 +18,6 @@ public class AdmCartaFianza {
             return;
         }
         CartaFianza objCartaFianza = new CartaFianza(numeroCartaFianza, proveedor);
-        arCartasFianzas.add(objCartaFianza);
     }
     
     private boolean verificarNumeroCartaFianza(int numeroCartaFianza) {
@@ -41,15 +35,15 @@ public class AdmCartaFianza {
     }
     
     public void eliminarCartaFianza(int numeroCartaFianza) {
-        arCartasFianzas.remove(buscaCartaFianza(numeroCartaFianza));
+        CartaFianza.elminarCartaFianza(buscaCartaFianza(numeroCartaFianza));
     }
     
     public int cantidadCartaFianza() {
-        return arCartasFianzas.size();
+        return CartaFianza.getCartasFianzas().size();
     }
     
     private CartaFianza buscaCartaFianza(int numeroCartaFianza) {
-        for (CartaFianza objCartaFianza: arCartasFianzas) {
+        for (CartaFianza objCartaFianza: CartaFianza.getCartasFianzas()) {
             if (objCartaFianza.getNumeroCartaFianza() == numeroCartaFianza) {
                 return objCartaFianza;
             }
@@ -58,23 +52,23 @@ public class AdmCartaFianza {
     }
     
     // Registrar un usuario en una carta fianza
-    public void registrarUsuarioCartaFianza(int numeroCartaFianza, String usuario) {
-        buscaCartaFianza(numeroCartaFianza).registrarUsuario(usuario);
+    public void registrarUsuarioCartaFianza(int numeroCartaFianza, Empleado usuario) {
+        buscaCartaFianza(numeroCartaFianza).registrarEmpleadoNotificacion(usuario);
     }
     
     // Eliminar usuario en una carta fianza
-    public void eliminarUsuarioCartaFianza(int numeroCartaFianza, String usuario) {
-        buscaCartaFianza(numeroCartaFianza).elminarUsuario(usuario);
+    public void eliminarUsuarioCartaFianza(int numeroCartaFianza, Empleado usuario) {
+        buscaCartaFianza(numeroCartaFianza).elminarEmpleadoNotificacion(usuario);
     }
     
     // Cantidad de usuario en una carta fianza
     public int cantidadUsuariosCartaFianza(int numeroCartaFianza) {
-        return buscaCartaFianza(numeroCartaFianza).getUsuarios().size();
+        return buscaCartaFianza(numeroCartaFianza).getEmpleadoNotificacion().size();
     }
     
     // Mostrar usuarios de una carta fianza
-    private ArrayList<String> mostrarUsuariosCartaFianza(int numeroCartaFianza) {
-        return buscaCartaFianza(numeroCartaFianza).getUsuarios();
+    private ArrayList<Empleado> mostrarUsuariosCartaFianza(int numeroCartaFianza) {
+        return buscaCartaFianza(numeroCartaFianza).getEmpleadoNotificacion();
     }
     
     // Devuelve el proveedor en una carta fianza

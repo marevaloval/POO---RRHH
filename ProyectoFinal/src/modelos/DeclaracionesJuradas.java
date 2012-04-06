@@ -1,5 +1,6 @@
 package modelos;
 
+import BaseDatos.BDDeclaracionJurada;
 import java.util.ArrayList;
 
 public class DeclaracionesJuradas {
@@ -8,7 +9,7 @@ public class DeclaracionesJuradas {
     private String responsable;
     private String motivo;
     private String fechaVencimiento;
-    private ArrayList<String> arUsuario;
+    private ArrayList<Empleado> arEmpleadoNotificacion;
     
     private String cargo;
     private String fechaAsumpcion;
@@ -18,13 +19,15 @@ public class DeclaracionesJuradas {
     private String publicacion;
     private String fechaDocumento;
     private String numeroDocumento;
+    private boolean tareaAsignada;
 
     public DeclaracionesJuradas(int numero, String responsable, String motivo, String fechaVencimiento) {
         this.numero = numero;
         this.responsable = responsable;
         this.motivo = motivo;
         this.fechaVencimiento = fechaVencimiento;
-        arUsuario = new ArrayList<String>();
+        arEmpleadoNotificacion = new ArrayList<Empleado>();
+        BDDeclaracionJurada.agregarDeclaracionJuradaBD(this);
     }
 
     public int getNumero() {
@@ -57,22 +60,22 @@ public class DeclaracionesJuradas {
 
     public void setResponsable(String responsable) {
         this.responsable = responsable;
-    }
-    
-    public ArrayList<String> getUsuarios() {
-        return arUsuario;
-    }
+    }    
 
-    public void registrarUsuario(String usuario) {
-        arUsuario.add(usuario);
+    public void registrarEmpleadoNotificacion(Empleado empleado) {
+        arEmpleadoNotificacion.add(empleado);
     }
     
-    public void elminarUsuario(String usuario) {
-        for (String usuarioLista : arUsuario) {
-            if (usuarioLista.equals(usuario)) {
-                arUsuario.remove(usuarioLista);
+    public void elminarEmpleadoNotificacion(Empleado empleado) {
+        for (Empleado empleadoLista : arEmpleadoNotificacion) {
+            if (empleadoLista.equals(empleado)) {
+                arEmpleadoNotificacion.remove(empleadoLista);
             }
         }
+    }
+    
+    public ArrayList<Empleado> getEmpleadoNotificacion() {
+        return arEmpleadoNotificacion;
     }
 
     public String getCargo() {
@@ -137,6 +140,22 @@ public class DeclaracionesJuradas {
 
     public void setTipo(String tipo) {
         this.tipo = tipo;
+    }
+
+    public boolean getTareaAsignada() {
+        return tareaAsignada;
+    }
+
+    public void setTareaAsignada(boolean tareaAsignada) {
+        this.tareaAsignada = tareaAsignada;
     }        
+    
+    public static ArrayList<DeclaracionesJuradas> getDeclaracionesJuradas() {
+        return BDDeclaracionJurada.simularDataDeclaracionJurada();
+    }
+    
+    public static void elminarDeclaracionJurada(DeclaracionesJuradas declaracionJurada) {
+        BDDeclaracionJurada.eliminarDeclaracionJuradaBD(declaracionJurada);
+    }
         
 }

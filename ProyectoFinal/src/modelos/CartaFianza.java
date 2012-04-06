@@ -4,6 +4,7 @@
  */
 package modelos;
 
+import BaseDatos.BDCartaFianza;
 import java.util.ArrayList;
 
 public class CartaFianza {
@@ -11,7 +12,7 @@ public class CartaFianza {
     private int numeroCartaFianza;
     private String proveedor;
     
-    private ArrayList<String> arUsuario;    
+    private ArrayList<Empleado> arEmpleadoNotificacion;    
     private int numeroContrato;
     private String bancoEmisor;
     private String tipo;    
@@ -24,7 +25,7 @@ public class CartaFianza {
     public CartaFianza(int numeroCartaFianza, String proveedor) {
         this.numeroCartaFianza = numeroCartaFianza;
         this.proveedor = proveedor;
-        arUsuario = new ArrayList<String>();
+        arEmpleadoNotificacion = new ArrayList<Empleado>();
     }    
     
     public int getNumeroCartaFianza() {
@@ -43,21 +44,21 @@ public class CartaFianza {
         this.proveedor = proveedor;
     }    
     
-    public ArrayList<String> getUsuarios() {
-        return arUsuario;
-    }
-
-    public void registrarUsuario(String usuario) {
-        arUsuario.add(usuario);
+    public void registrarEmpleadoNotificacion(Empleado empleado) {
+        arEmpleadoNotificacion.add(empleado);
     }
     
-    public void elminarUsuario(String usuario) {
-        for (String usuarioLista : arUsuario) {
-            if (usuarioLista.equals(usuario)) {
-                arUsuario.remove(usuarioLista);
+    public void elminarEmpleadoNotificacion(Empleado empleado) {
+        for (Empleado empleadoLista : arEmpleadoNotificacion) {
+            if (empleadoLista.equals(empleado)) {
+                arEmpleadoNotificacion.remove(empleadoLista);
             }
         }
-    }        
+    }
+    
+    public ArrayList<Empleado> getEmpleadoNotificacion() {
+        return arEmpleadoNotificacion;
+    }
     
     public String getBancoEmisor() {
         return bancoEmisor;
@@ -121,6 +122,14 @@ public class CartaFianza {
 
     public void setTipo(String tipo) {
         this.tipo = tipo;
-    }            
+    }  
+    
+    public static ArrayList<CartaFianza> getCartasFianzas() {
+        return BDCartaFianza.simularDataCartaFianza();
+    }
+    
+    public static void elminarCartaFianza(CartaFianza cartaFianza) {
+        BDCartaFianza.eliminarCartaFianzaBD(cartaFianza);
+    }    
     
 }

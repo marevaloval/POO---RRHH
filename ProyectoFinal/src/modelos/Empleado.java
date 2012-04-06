@@ -1,18 +1,23 @@
 package modelos;
 
+import java.util.ArrayList;
+import BaseDatos.BDEmpleado;
+
 public class Empleado {
-    private String codigoEmpleado;
+    
+    private String nombre;
 
-    public String getCodigoEmpleado() {
-        return codigoEmpleado;
+    public Empleado(String nombre) {
+        this.nombre = nombre;
     }
 
-    public void setCodigoEmpleado(String codigoEmpleado) {
-        this.codigoEmpleado = codigoEmpleado;
+    public String getNombre() {
+        return nombre;
     }
-
-    public Empleado(String codigoEmpleado, String nombre, String apellido, String user, String password) {
-        //super(nombre, apellido, user, password);
-        this.codigoEmpleado = codigoEmpleado;
+    
+    public static ArrayList<Empleado> getEmpleados() {
+        BDEmpleado dbEmpleados = new BDEmpleado();
+        return dbEmpleados.simulaDataEmpleados();
     }
+    
 }

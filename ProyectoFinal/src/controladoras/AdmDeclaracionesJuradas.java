@@ -2,14 +2,9 @@ package controladoras;
 
 import java.util.ArrayList;
 import modelos.DeclaracionesJuradas;
+import modelos.Empleado;
 
-public class AdmDeclaracionesJuradas {
-    
-    private ArrayList<DeclaracionesJuradas> arDeclaraciones;
-
-    public AdmDeclaracionesJuradas() {
-        arDeclaraciones = new ArrayList<DeclaracionesJuradas>();
-    }
+public class AdmDeclaracionesJuradas {    
     
     // Registrar una nueva declaración jurada
     public void registrarDeclaracionJurada(int numeroDeclaracionJurada, String responsable, String motivo, String fechaVencimiento) {
@@ -26,43 +21,42 @@ public class AdmDeclaracionesJuradas {
             return;
         }                
         DeclaracionesJuradas objDeclaracionJurada = new DeclaracionesJuradas(numeroDeclaracionJurada, responsable, motivo, fechaVencimiento);
-        arDeclaraciones.add(objDeclaracionJurada);
     }
     
     // Eliminar declaración jurada
-    public void eliminarDeclaracionJurada(int numeroDeclaracionJurada) {
-        arDeclaraciones.remove(buscaDeclaracionJurada(numeroDeclaracionJurada));
+    public void eliminarDeclaracionJurada(int numeroDeclaracionJurada) {        
+        DeclaracionesJuradas.elminarDeclaracionJurada(buscaDeclaracionJurada(numeroDeclaracionJurada));
     }
     
     // Cantidad de declaraciones juradas
     public int cantidadDeclaracionesJuradas() {
-        return arDeclaraciones.size();
+        return DeclaracionesJuradas.getDeclaracionesJuradas().size();
     }
     
     // Registrar un usuario en una declaración jurada
-    public void registrarUsuarioDeclaracionJurada(int numeroDeclaracionJurada, String usuario) {
-        buscaDeclaracionJurada(numeroDeclaracionJurada).registrarUsuario(usuario);
+    public void registrarUsuarioDeclaracionJurada(int numeroDeclaracionJurada, Empleado usuario) {
+        buscaDeclaracionJurada(numeroDeclaracionJurada).registrarEmpleadoNotificacion(usuario);
     }
     
     // Eliminar usuario en una declaración jurada
-    public void eliminarUsuarioDeclaracionJurada(int numeroDeclaracionJurada, String usuario) {
-        buscaDeclaracionJurada(numeroDeclaracionJurada).elminarUsuario(usuario);
+    public void eliminarUsuarioDeclaracionJurada(int numeroDeclaracionJurada, Empleado usuario) {
+        buscaDeclaracionJurada(numeroDeclaracionJurada).elminarEmpleadoNotificacion(usuario);
     }
     
     // Cantidad de usuario en una declaración jurada
     public int cantidadUsuariosDeclaracionJurada(int numeroDeclaracionJurada) {
-        return buscaDeclaracionJurada(numeroDeclaracionJurada).getUsuarios().size();
+        return buscaDeclaracionJurada(numeroDeclaracionJurada).getEmpleadoNotificacion().size();
     }
     
     // Mostrar usuarios de una declaración jurada
-    private ArrayList<String> mostrarUsuariosDeclaracionJurada(int numeroDeclaracionJurada) {
-        return buscaDeclaracionJurada(numeroDeclaracionJurada).getUsuarios();
+    private ArrayList<Empleado> mostrarUsuariosDeclaracionJurada(int numeroDeclaracionJurada) {
+        return buscaDeclaracionJurada(numeroDeclaracionJurada).getEmpleadoNotificacion();
     }
     
     private DeclaracionesJuradas buscaDeclaracionJurada(int numero) {
-        for (DeclaracionesJuradas objDC : arDeclaraciones) {
-            if (objDC.getNumero() == numero) {
-                return objDC;
+        for (DeclaracionesJuradas declaracionesJuradas : DeclaracionesJuradas.getDeclaracionesJuradas()) {
+            if (declaracionesJuradas.getNumero() == numero) {
+                return declaracionesJuradas;
             }
         }
         return null;
