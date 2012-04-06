@@ -4,6 +4,7 @@
  */
 package controladoras;
 
+import modelos.Empleado;
 import static org.junit.Assert.*;
 import org.junit.Test;
 
@@ -21,25 +22,23 @@ public class AdmDeclaracionesJuradasTest {
     
     @Test
     public void eliminacionDeclaracionJurada() {
-        admDeclaracionesJuradas.registrarDeclaracionJurada(1,"Luis Caiguaraico", "Declaración", "25/03/2012");
-        admDeclaracionesJuradas.registrarDeclaracionJurada(2,"Miguel Arévalo", "Declaración", "25/03/2012");
         admDeclaracionesJuradas.eliminarDeclaracionJurada(1);
-        assertEquals(1, admDeclaracionesJuradas.cantidadDeclaracionesJuradas());       
+        assertEquals(0, admDeclaracionesJuradas.cantidadDeclaracionesJuradas());       
     }
     
     @Test
     public void registroUsuarioDeclaracionJurada() {
+        Empleado empleado1 = new Empleado("Empleado 1");
         admDeclaracionesJuradas.registrarDeclaracionJurada(1, "Luis Caiguaraico", "Declaración", "25/03/2012");
-        admDeclaracionesJuradas.registrarUsuarioDeclaracionJurada(1, "user1");
+        admDeclaracionesJuradas.registrarUsuarioDeclaracionJurada(1, empleado1);
         assertEquals(1, admDeclaracionesJuradas.cantidadUsuariosDeclaracionJurada(1));
     }
     
     @Test
     public void eliminacionUsuarioDeclaracionJurada() {
-        admDeclaracionesJuradas.registrarDeclaracionJurada(1, "Luis Caiguaraico", "Declaración", "25/03/2012");
-        admDeclaracionesJuradas.registrarUsuarioDeclaracionJurada(1, "user1");
-        admDeclaracionesJuradas.registrarUsuarioDeclaracionJurada(1, "user2");
-        admDeclaracionesJuradas.eliminarUsuarioDeclaracionJurada(1, "user1");
+        Empleado empleado1 = new Empleado("Empleado 1");
+        admDeclaracionesJuradas.registrarUsuarioDeclaracionJurada(1, empleado1);
+        admDeclaracionesJuradas.eliminarUsuarioDeclaracionJurada(1, empleado1);
         assertEquals(1, admDeclaracionesJuradas.cantidadUsuariosDeclaracionJurada(1));
     }
     
@@ -115,6 +114,13 @@ public class AdmDeclaracionesJuradasTest {
         admDeclaracionesJuradas.registrarDeclaracionJurada(1, "Luis Caiguaraico", "Declaración", "25/03/2012");
         admDeclaracionesJuradas.registrarNumeroDocumentoDeclaracionJurada(1, "12345678");
         assertEquals("12345678", admDeclaracionesJuradas.mostrarNumeroDocumentoDeclaracionJurada(1));
+    }
+    
+    @Test
+    public void asignacionTareaDeclaracionJurada() {
+        admDeclaracionesJuradas.registrarDeclaracionJurada(1, "Luis Caiguaraico", "Declaración", "25/03/2012");
+        admDeclaracionesJuradas.asignarTareaDeclaracionJurada(1);
+        assertTrue(admDeclaracionesJuradas.mostrarTareaAsignada(1));
     }
     
 }

@@ -68,8 +68,9 @@ public class DeclaracionesJuradas {
     
     public void elminarEmpleadoNotificacion(Empleado empleado) {
         for (Empleado empleadoLista : arEmpleadoNotificacion) {
-            if (empleadoLista.equals(empleado)) {
-                arEmpleadoNotificacion.remove(empleadoLista);
+            if (empleadoLista == empleado) {
+                arEmpleadoNotificacion.remove(empleado);
+                return;
             }
         }
     }
@@ -148,7 +149,7 @@ public class DeclaracionesJuradas {
 
     public void setTareaAsignada(boolean tareaAsignada) {
         this.tareaAsignada = tareaAsignada;
-    }        
+    }
     
     public static ArrayList<DeclaracionesJuradas> getDeclaracionesJuradas() {
         return BDDeclaracionJurada.simularDataDeclaracionJurada();

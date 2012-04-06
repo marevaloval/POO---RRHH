@@ -9,22 +9,24 @@ import modelos.DeclaracionesJuradas;
 
 public class BDDeclaracionJurada {        
     
-    static ArrayList<DeclaracionesJuradas> objDeclaracionJurada = new ArrayList<DeclaracionesJuradas>();
+    static ArrayList<DeclaracionesJuradas> arDeclaracionJurada = new ArrayList<DeclaracionesJuradas>();
     
     public static ArrayList<DeclaracionesJuradas> simularDataDeclaracionJurada() {        
-        return objDeclaracionJurada;
+        return arDeclaracionJurada;
     }
     
     public static void agregarDeclaracionJuradaBD(DeclaracionesJuradas declaracionJurada) {
-        objDeclaracionJurada.add(declaracionJurada);
+        arDeclaracionJurada.add(declaracionJurada);
     }            
     
     public static void eliminarDeclaracionJuradaBD(DeclaracionesJuradas declaracionJurada) {
-        for (DeclaracionesJuradas declaracionesJuradas : objDeclaracionJurada) {
+        for (DeclaracionesJuradas declaracionesJuradas : arDeclaracionJurada) {
             if (declaracionesJuradas == declaracionJurada) {
-                objDeclaracionJurada.remove(declaracionesJuradas);
+                arDeclaracionJurada.remove(declaracionesJuradas);
+                return;
             }
-        }
+        }        
+        
     }
     
 }

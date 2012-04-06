@@ -20,12 +20,14 @@ public class CartaFianza {
     private double importe;
     private String  fechaVencimiento;
     private String responsable;
-    private String comentario;    
+    private String comentario;   
+    private boolean tareaAsignada;
 
     public CartaFianza(int numeroCartaFianza, String proveedor) {
         this.numeroCartaFianza = numeroCartaFianza;
         this.proveedor = proveedor;
         arEmpleadoNotificacion = new ArrayList<Empleado>();
+        BDCartaFianza.agregarCartaFianzaBD(this);
     }    
     
     public int getNumeroCartaFianza() {
@@ -50,8 +52,9 @@ public class CartaFianza {
     
     public void elminarEmpleadoNotificacion(Empleado empleado) {
         for (Empleado empleadoLista : arEmpleadoNotificacion) {
-            if (empleadoLista.equals(empleado)) {
-                arEmpleadoNotificacion.remove(empleadoLista);
+            if (empleadoLista == empleado) {
+                arEmpleadoNotificacion.remove(empleado);
+                return;
             }
         }
     }
@@ -130,6 +133,14 @@ public class CartaFianza {
     
     public static void elminarCartaFianza(CartaFianza cartaFianza) {
         BDCartaFianza.eliminarCartaFianzaBD(cartaFianza);
-    }    
+    }
+
+    public boolean getTareaAsignada() {
+        return tareaAsignada;
+    }
+
+    public void setTareaAsignada(boolean tareaAsignada) {
+        this.tareaAsignada = tareaAsignada;
+    }
     
 }

@@ -189,4 +189,14 @@ public class AdmDeclaracionesJuradas {
         return buscaDeclaracionJurada(numeroDeclaracionJurada).getNumeroDocumento();
     }    
     
+    // Aginación de tarea de declaración jurada
+    public void asignarTareaDeclaracionJurada(int numeroDeclaracionJurada) {
+        buscaDeclaracionJurada(numeroDeclaracionJurada).setTareaAsignada(true);
+    }
+    
+    // Mostrar valor de verdad de la asignación de declaración jurada
+    public boolean mostrarTareaAsignada(int numeroDeclaracionJurada) {
+        return buscaDeclaracionJurada(numeroDeclaracionJurada).getTareaAsignada();
+    }
+    
 }

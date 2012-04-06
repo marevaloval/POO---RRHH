@@ -9,6 +9,7 @@ public class Empleado {
 
     public Empleado(String nombre) {
         this.nombre = nombre;
+        BDEmpleado.agregarEmpleadoBD(this);
     }
 
     public String getNombre() {
@@ -16,8 +17,7 @@ public class Empleado {
     }
     
     public static ArrayList<Empleado> getEmpleados() {
-        BDEmpleado dbEmpleados = new BDEmpleado();
-        return dbEmpleados.simulaDataEmpleados();
+        return BDEmpleado.simularDataEmpleados();
     }
     
 }

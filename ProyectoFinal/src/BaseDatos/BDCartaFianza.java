@@ -9,20 +9,21 @@ import modelos.CartaFianza;
 
 public class BDCartaFianza {
     
-    static ArrayList<CartaFianza> objCartaFianza = new ArrayList<CartaFianza>();
+    static ArrayList<CartaFianza> arCartaFianza = new ArrayList<CartaFianza>();
     
     public static ArrayList<CartaFianza> simularDataCartaFianza() {        
-        return objCartaFianza;
+        return arCartaFianza;
     }
     
     public static void agregarCartaFianzaBD(CartaFianza cartaFianza) {
-        objCartaFianza.add(cartaFianza);
+        arCartaFianza.add(cartaFianza);
     }            
     
     public static void eliminarCartaFianzaBD(CartaFianza cartaFianza) {
-        for (CartaFianza cartasFianzas : objCartaFianza) {
+        for (CartaFianza cartasFianzas : arCartaFianza) {
             if (cartasFianzas == cartaFianza) {
-                objCartaFianza.remove(cartasFianzas);
+                arCartaFianza.remove(cartaFianza);                
+                return;
             }
         }
     }    
