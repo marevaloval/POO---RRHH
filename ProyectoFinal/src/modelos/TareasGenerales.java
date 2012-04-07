@@ -1,10 +1,16 @@
 package modelos;
 
+import BaseDatos.BDTareasGenerales;
+import java.util.ArrayList;
+
 public class TareasGenerales extends Tarea {
+    
+    private int numeroTareaGeneral;
     private String asunto;
     private String fechaVencimiento;
     private String responsable;
     private String comentario;
+    private ArrayList<Empleado> arEmpleadoNotificacion;
 
     public String getAsunto() {
         return asunto;
@@ -22,26 +28,42 @@ public class TareasGenerales extends Tarea {
         this.comentario = comentario;
     }
 
-    public String getFechaVencimiento() {
-        return fechaVencimiento;
-    }
-
-    public void setFechaVencimiento(String fechaVencimiento) {
-        this.fechaVencimiento = fechaVencimiento;
-    }
-
-    public String getResponsable() {
-        return responsable;
-    }
-
-    public void setResponsable(String responsable) {
-        this.responsable = responsable;
-    }
-
-    public TareasGenerales(String asunto, String fechaVencimiento, String responsable) {
+    public TareasGenerales(int numeroTareaGeneral, String asunto, String fechaVencimiento, String responsable) {
         super("Tareas Generales");
+        this.numeroTareaGeneral = numeroTareaGeneral;
         this.asunto = asunto;
         this.fechaVencimiento = fechaVencimiento;
         this.responsable = responsable;
+        arEmpleadoNotificacion = new ArrayList<Empleado>();
     }
+    
+    public static ArrayList<TareasGenerales> getTareasGenerales() {
+        return BDTareasGenerales.simularDataTareasGenerales();
+    }
+    
+    public static void elminarTareaGeneral(TareasGenerales tareaGeneral) {
+        BDTareasGenerales.eliminarTareasGeneralesBD(tareaGeneral);
+    }
+
+    public int getNumeroTareaGeneral() {
+        return numeroTareaGeneral;
+    }
+    
+    public void registrarEmpleadoNotificacion(Empleado empleado) {
+        arEmpleadoNotificacion.add(empleado);
+    }
+    
+    public void elminarEmpleadoNotificacion(Empleado empleado) {
+        for (Empleado empleadoLista : arEmpleadoNotificacion) {
+            if (empleadoLista == empleado) {
+                arEmpleadoNotificacion.remove(empleado);
+                return;
+            }
+        }
+    }
+    
+    public ArrayList<Empleado> getEmpleadoNotificacion() {
+        return arEmpleadoNotificacion;
+    }        
+    
 }

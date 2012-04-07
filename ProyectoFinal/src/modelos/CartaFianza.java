@@ -80,14 +80,6 @@ public class CartaFianza extends Tarea {
         this.comentario = comentario;
     }
 
-    public String getFechaVencimiento() {
-        return fechaVencimiento;
-    }
-
-    public void setFechaVencimiento(String fechaVencimiento) {
-        this.fechaVencimiento = fechaVencimiento;
-    }
-
     public double getImporte() {
         return importe;
     }
@@ -110,14 +102,6 @@ public class CartaFianza extends Tarea {
 
     public void setNumeroProcesoSeleccion(int numeroProcesoSeleccion) {
         this.numeroProcesoSeleccion = numeroProcesoSeleccion;
-    }
-
-    public String getResponsable() {
-        return responsable;
-    }
-
-    public void setResponsable(String responsable) {
-        this.responsable = responsable;
     }
 
     public String getTipo() {

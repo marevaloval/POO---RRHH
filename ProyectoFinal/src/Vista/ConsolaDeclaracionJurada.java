@@ -16,12 +16,13 @@ public class ConsolaDeclaracionJurada {
 
         admDeclaracionesJuradas.registrarDeclaracionJurada(1,"Luis Caiguaraico", "", "25/03/2012");
         System.out.println(admDeclaracionesJuradas.cantidadDeclaracionesJuradas());*/
-        AdmCartaFianza admCartaFianza = new AdmCartaFianza();
+        /*AdmCartaFianza admCartaFianza = new AdmCartaFianza();
         admCartaFianza.registrarCartaFianza(1, "Proveedor 1");
         admCartaFianza.registrarCartaFianza(2, "Proveedor 2");
         System.out.println(admCartaFianza.cantidadCartaFianza());
         admCartaFianza.eliminarCartaFianza(1);
-        System.out.println(admCartaFianza.cantidadCartaFianza());
+        System.out.println(admCartaFianza.cantidadCartaFianza());*/
+        System.out.println("linea 1 \n linea 2");
         
         
     }    

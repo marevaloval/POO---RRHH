@@ -8,7 +8,6 @@ public class DeclaracionesJuradas extends Tarea {
     private int numero;
     private String responsable;
     private String motivo;
-    private String fechaVencimiento;
     private ArrayList<Empleado> arEmpleadoNotificacion;
     
     private String cargo;
@@ -23,10 +22,11 @@ public class DeclaracionesJuradas extends Tarea {
 
     public DeclaracionesJuradas(int numero, String responsable, String motivo, String fechaVencimiento) {
         super("Declaración Jurada");
+        super.setFechaVencimiento(fechaVencimiento);
+        super.setResponsable(responsable);
         this.numero = numero;
         this.responsable = responsable;
         this.motivo = motivo;
-        this.fechaVencimiento = fechaVencimiento;
         arEmpleadoNotificacion = new ArrayList<Empleado>();
         BDDeclaracionJurada.agregarDeclaracionJuradaBD(this);
     }
@@ -39,14 +39,6 @@ public class DeclaracionesJuradas extends Tarea {
         this.numero = numero;
     }
 
-    public String getFechaVencimiento() {
-        return fechaVencimiento;
-    }
-
-    public void setFechaVencimiento(String fechaVencimiento) {
-        this.fechaVencimiento = fechaVencimiento;
-    }
-
     public String getMotivo() {
         return motivo;
     }
@@ -54,14 +46,6 @@ public class DeclaracionesJuradas extends Tarea {
     public void setMotivo(String motivo) {
         this.motivo = motivo;
     }
-
-    public String getResponsable() {
-        return responsable;
-    }
-
-    public void setResponsable(String responsable) {
-        this.responsable = responsable;
-    }    
 
     public void registrarEmpleadoNotificacion(Empleado empleado) {
         arEmpleadoNotificacion.add(empleado);
