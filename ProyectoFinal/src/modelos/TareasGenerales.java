@@ -1,6 +1,6 @@
 package modelos;
 
-public class TareasGenerales {
+public class TareasGenerales extends Tarea {
     private String asunto;
     private String fechaVencimiento;
     private String responsable;
@@ -39,6 +39,7 @@ public class TareasGenerales {
     }
 
     public TareasGenerales(String asunto, String fechaVencimiento, String responsable) {
+        super("Tareas Generales");
         this.asunto = asunto;
         this.fechaVencimiento = fechaVencimiento;
         this.responsable = responsable;

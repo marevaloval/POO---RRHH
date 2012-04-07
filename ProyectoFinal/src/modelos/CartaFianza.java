@@ -7,7 +7,7 @@ package modelos;
 import BaseDatos.BDCartaFianza;
 import java.util.ArrayList;
 
-public class CartaFianza {
+public class CartaFianza extends Tarea {
     
     private int numeroCartaFianza;
     private String proveedor;
@@ -24,6 +24,7 @@ public class CartaFianza {
     private boolean tareaAsignada;
 
     public CartaFianza(int numeroCartaFianza, String proveedor) {
+        super("Carta Fianza");
         this.numeroCartaFianza = numeroCartaFianza;
         this.proveedor = proveedor;
         arEmpleadoNotificacion = new ArrayList<Empleado>();

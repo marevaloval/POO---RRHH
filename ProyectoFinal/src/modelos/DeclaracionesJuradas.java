@@ -3,7 +3,7 @@ package modelos;
 import BaseDatos.BDDeclaracionJurada;
 import java.util.ArrayList;
 
-public class DeclaracionesJuradas {
+public class DeclaracionesJuradas extends Tarea {
     
     private int numero;
     private String responsable;
@@ -22,6 +22,7 @@ public class DeclaracionesJuradas {
     private boolean tareaAsignada;
 
     public DeclaracionesJuradas(int numero, String responsable, String motivo, String fechaVencimiento) {
+        super("Declaración Jurada");
         this.numero = numero;
         this.responsable = responsable;
         this.motivo = motivo;
