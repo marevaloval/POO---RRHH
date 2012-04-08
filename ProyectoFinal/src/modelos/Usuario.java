@@ -17,9 +17,10 @@ public class Usuario {
     private String fechaIngreso;
     private String cargo;
     private String dni;
+    private boolean transacciones;
 
     public Usuario(String usuario, String contrasenha, String nombre, String apellidoPaterno, String apellidoMaterno, 
-                   String correo, String fechaIngreso, String cargo, String dni) {
+                   String correo, String fechaIngreso, String cargo, String dni, Rol rol) {
         this.usuario = usuario;
         this.contrasenha = contrasenha;
         this.nombre = nombre;
@@ -29,6 +30,7 @@ public class Usuario {
         this.fechaIngreso = fechaIngreso;
         this.cargo = cargo;
         this.dni = dni;
+        this.rol = rol;
     }
 
     public String getApellidoMaterno() {
@@ -105,6 +107,14 @@ public class Usuario {
 
     public String getUsuario() {
         return usuario;
+    }
+
+    public boolean getTransacciones() {
+        return transacciones;
+    }
+
+    public void setTransacciones(boolean transacciones) {
+        this.transacciones = transacciones;
     }        
     
     public static ArrayList<Usuario> getUsuarios() {

@@ -4,6 +4,7 @@
  */
 package controladoras;
 
+import modelos.Rol;
 import modelos.Usuario;
 import static org.junit.Assert.*;
 import org.junit.Test;
@@ -28,7 +29,8 @@ public class AdmDeclaracionesJuradasTest {
     
     @Test
     public void registroUsuarioDeclaracionJurada() {
-        Usuario usuario1 = new Usuario("luisc", "1234", "", "", "", "", "", "", "");
+        Rol rol1 = new Rol(1);
+        Usuario usuario1 = new Usuario("luisc", "1234", "", "", "", "", "", "", "", rol1);
         admDeclaracionesJuradas.registrarDeclaracionJurada(1, "Luis Caiguaraico", "Declaración", "25/03/2012");
         admDeclaracionesJuradas.registrarUsuarioDeclaracionJurada(1, "luisc");
         assertEquals(1, admDeclaracionesJuradas.cantidadUsuariosDeclaracionJurada(1));

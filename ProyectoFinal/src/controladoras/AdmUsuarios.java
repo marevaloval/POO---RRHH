@@ -5,6 +5,7 @@
 package controladoras;
 
 import java.util.ArrayList;
+import modelos.Rol;
 import modelos.Usuario;
 
 public class AdmUsuarios {        
@@ -12,16 +13,47 @@ public class AdmUsuarios {
     // Registrar usuario
     public void registrarUsuario(String usuario, String contrasenha, String dni, String nombre, 
                                  String apellidoPaterno, String apellidoMaterno, String correo, String fechaIngreso,
-                                 String Cargo, int rol) {
-        
+                                 String cargo, int rol) {
+        if (validaUsuario(usuario) == false) {
+            return;
+        }
+        if (validaContrasenha(contrasenha) == false) {
+            return;
+        }        
+        if (validaDni(dni) == false) {
+            return;
+        }                
+        if (validaNombre(nombre) == false) {
+            return;
+        }                        
+        if (validaApellidoPaterno(apellidoPaterno) == false) {
+            return;
+        }                              
+        if (validaApellidoMaterno(apellidoMaterno) == false) {
+            return;
+        }          
+        if (validaCorreo(correo) == false) {
+            return;
+        }        
+        if (validaFechaIngreso(fechaIngreso) == false) {
+            return;
+        }                
+        if (validaCargo(cargo) == false) {
+            return;
+        }                        
+        if (validaRol(rol) == false) {
+            return;
+        }                            
         // Registro de usuario
         Usuario objUsuario = new Usuario(usuario, contrasenha, nombre, apellidoPaterno, apellidoMaterno, correo, 
-                                         fechaIngreso, Cargo, dni);        
+                                         fechaIngreso, cargo, dni, Rol.buscarRol(rol));                     
     }
     
     // Eliminar usuaro
-    public void eliminarUsuario(String usuario) {      
-        Usuario.eliminarUsuario(usuario);
+    public void eliminarUsuario(String usuario) { 
+        if (Usuario.buscarUsuario(usuario).getTransacciones() == false) {
+            Usuario.eliminarUsuario(usuario);
+        }        
     }
     
     // Devuelve la cantidad de usuarios ingresados
@@ -68,5 +100,69 @@ public class AdmUsuarios {
             return true;
         }                
     }               
+    
+    private boolean validaDni(String dni) {
+        if (dni.equals("")) {
+            return false;
+        } else {
+            return true;
+        }                
+    }
+    
+    private boolean validaNombre(String nombre) {
+        if (nombre.equals("")) {
+            return false;
+        } else {
+            return true;
+        }                
+    }    
+
+    private boolean validaApellidoPaterno(String apellidoPaterno) {
+        if (apellidoPaterno.equals("")) {
+            return false;
+        } else {
+            return true;
+        }                
+    }        
+    
+    private boolean validaApellidoMaterno(String apellidoMaterno) {
+        if (apellidoMaterno.equals("")) {
+            return false;
+        } else {
+            return true;
+        }                
+    }            
+    
+    private boolean validaCorreo(String Correo) {
+        if (Correo.equals("")) {
+            return false;
+        } else {
+            return true;
+        }                
+    }                
+    
+    private boolean validaFechaIngreso(String fechaIngreso) {
+        if (fechaIngreso.equals("")) {
+            return false;
+        } else {
+            return true;
+        }                
+    }             
+
+    private boolean validaCargo(String cargo) {
+        if (cargo.equals("")) {
+            return false;
+        } else {
+            return true;
+        }                
+    }                 
+
+    private boolean validaRol(int rol) {
+        if (rol == 0) {
+            return false;
+        } else {
+            return true;
+        }                
+    }                    
     
 }

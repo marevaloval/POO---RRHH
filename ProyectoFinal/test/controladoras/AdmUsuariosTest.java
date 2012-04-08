@@ -4,6 +4,7 @@
  */
 package controladoras;
 
+import modelos.Rol;
 import modelos.Usuario;
 import static org.junit.Assert.*;
 import org.junit.Test;
@@ -14,13 +15,15 @@ public class AdmUsuariosTest {
             
     @Test
     public void registroUsuario() {
-        Usuario usuario1 = new Usuario("luisc", "1234", "", "", "", "", "", "", "");
+        Rol rol1 = new Rol(1);
+        Usuario usuario1 = new Usuario("luisc", "1234", "", "", "", "", "", "", "", rol1);
         assertEquals(1, admUsuarios.cantidadUsuarios());
     }   
     
     @Test
     public void eliminoUsuario() {
-        Usuario usuario2 = new Usuario("luisc", "1234", "", "", "", "", "", "", "");
+        Rol rol2 = new Rol(2);
+        Usuario usuario2 = new Usuario("luisc", "1234", "", "", "", "", "", "", "", rol2);
         admUsuarios.eliminarUsuario("luisc");
         assertEquals(1, admUsuarios.cantidadUsuarios());
     }        

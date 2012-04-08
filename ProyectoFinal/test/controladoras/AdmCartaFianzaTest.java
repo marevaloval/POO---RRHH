@@ -4,6 +4,7 @@
  */
 package controladoras;
 
+import modelos.Rol;
 import modelos.Usuario;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -29,7 +30,8 @@ public class AdmCartaFianzaTest {
     
     @Test
     public void registroUsuarioCartaFianza() {
-        Usuario usuario1 = new Usuario("luisc", "1234", "", "", "", "", "", "", "");               
+        Rol rol1 = new Rol(1);
+        Usuario usuario1 = new Usuario("luisc", "1234", "", "", "", "", "", "", "", rol1);               
         admCartaFianza.registrarCartaFianza(1, "Proveedor 1");
         admCartaFianza.registrarUsuarioCartaFianza(1, "luisc");
         assertEquals(1, admCartaFianza.cantidadUsuariosCartaFianza(1));
