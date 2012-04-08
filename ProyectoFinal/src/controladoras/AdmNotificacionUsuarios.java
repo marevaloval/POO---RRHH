@@ -4,15 +4,14 @@
  */
 package controladoras;
 
-import java.util.ArrayList;
-import modelos.Empleado;
+import modelos.Usuario;
 import modelos.Tarea;
 
 public class AdmNotificacionUsuarios {
     
     public String notificacionTarea(String fecha, String empleado) {
         String postit="";
-        for (Tarea objTareas : Empleado.getTareas(empleado)) {
+        for (Tarea objTareas : Usuario.getTareas(empleado)) {
             if (objTareas.getFechaVencimiento().equals(fecha)) {
                 postit = objTareas.getNombreTarea()+"\n"+objTareas.getFechaVencimiento()+"\n"+objTareas.getFechaVencimiento();
                 return postit;
@@ -23,7 +22,7 @@ public class AdmNotificacionUsuarios {
     }
     
     public int cantidadTareasEmpleado(String empleado) {
-        return Empleado.getTareas(empleado).size();
+        return Usuario.getTareas(empleado).size();
     }
     
     

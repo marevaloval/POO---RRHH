@@ -6,7 +6,7 @@ package controladoras;
 
 import java.util.ArrayList;
 import modelos.CartaFianza;
-import modelos.Empleado;
+import modelos.Usuario;
 
 public class AdmCartaFianza {
         
@@ -37,7 +37,7 @@ public class AdmCartaFianza {
     }
     
     public void eliminarCartaFianza(int numeroCartaFianza) {
-        CartaFianza.elminarCartaFianza(buscaCartaFianza(numeroCartaFianza));
+        CartaFianza.elminarCartaFianza(numeroCartaFianza);
     }
     
     public int cantidadCartaFianza() {
@@ -54,23 +54,23 @@ public class AdmCartaFianza {
     }
     
     // Registrar un usuario en una carta fianza
-    public void registrarUsuarioCartaFianza(int numeroCartaFianza, Empleado usuario) {
-        buscaCartaFianza(numeroCartaFianza).registrarEmpleadoNotificacion(usuario);
+    public void registrarUsuarioCartaFianza(int numeroCartaFianza, String usuario) {
+        buscaCartaFianza(numeroCartaFianza).registrarUsuariosNotificacion(usuario);
     }
     
     // Eliminar usuario en una carta fianza
-    public void eliminarUsuarioCartaFianza(int numeroCartaFianza, Empleado usuario) {
-        buscaCartaFianza(numeroCartaFianza).elminarEmpleadoNotificacion(usuario);
+    public void eliminarUsuarioCartaFianza(int numeroCartaFianza, String usuario) {
+        buscaCartaFianza(numeroCartaFianza).elminarUsuariosNotificacion(usuario);
     }
     
     // Cantidad de usuario en una carta fianza
     public int cantidadUsuariosCartaFianza(int numeroCartaFianza) {
-        return buscaCartaFianza(numeroCartaFianza).getEmpleadoNotificacion().size();
+        return buscaCartaFianza(numeroCartaFianza).getUsuarioNotificacion().size();
     }
     
     // Mostrar usuarios de una carta fianza
-    private ArrayList<Empleado> mostrarUsuariosCartaFianza(int numeroCartaFianza) {
-        return buscaCartaFianza(numeroCartaFianza).getEmpleadoNotificacion();
+    private ArrayList<Usuario> mostrarUsuariosCartaFianza(int numeroCartaFianza) {
+        return buscaCartaFianza(numeroCartaFianza).getUsuarioNotificacion();
     }
     
     // Devuelve el proveedor en una carta fianza

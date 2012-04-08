@@ -8,7 +8,7 @@ public class DeclaracionesJuradas extends Tarea {
     private int numero;
     private String responsable;
     private String motivo;
-    private ArrayList<Empleado> arEmpleadoNotificacion;
+    private ArrayList<Usuario> arUsuariosNotificacion;
     
     private String cargo;
     private String fechaAsumpcion;
@@ -27,7 +27,7 @@ public class DeclaracionesJuradas extends Tarea {
         this.numero = numero;
         this.responsable = responsable;
         this.motivo = motivo;
-        arEmpleadoNotificacion = new ArrayList<Empleado>();
+        arUsuariosNotificacion = new ArrayList<Usuario>();
         BDDeclaracionJurada.agregarDeclaracionJuradaBD(this);
     }
 
@@ -47,21 +47,21 @@ public class DeclaracionesJuradas extends Tarea {
         this.motivo = motivo;
     }
 
-    public void registrarEmpleadoNotificacion(Empleado empleado) {
-        arEmpleadoNotificacion.add(empleado);
+    public void registrarUsuariosNotificacion(String usuario) {
+        arUsuariosNotificacion.add(Usuario.buscarUsuario(usuario));
     }
     
-    public void elminarEmpleadoNotificacion(Empleado empleado) {
-        for (Empleado empleadoLista : arEmpleadoNotificacion) {
-            if (empleadoLista == empleado) {
-                arEmpleadoNotificacion.remove(empleado);
+    public void elminarUsuariosNotificacion(String usuario) {
+        for (Usuario objUsuario : arUsuariosNotificacion) {
+            if (objUsuario.getUsuario().equals(usuario)) {
+                arUsuariosNotificacion.remove(objUsuario);
                 return;
             }
         }
     }
     
-    public ArrayList<Empleado> getEmpleadoNotificacion() {
-        return arEmpleadoNotificacion;
+    public ArrayList<Usuario> getUsuarioNotificacion() {
+        return arUsuariosNotificacion;
     }
 
     public String getCargo() {
@@ -140,8 +140,13 @@ public class DeclaracionesJuradas extends Tarea {
         return BDDeclaracionJurada.simularDataDeclaracionJurada();
     }
     
-    public static void elminarDeclaracionJurada(DeclaracionesJuradas declaracionJurada) {
-        BDDeclaracionJurada.eliminarDeclaracionJuradaBD(declaracionJurada);
+    public static void elminarDeclaracionJurada(int declaracionJurada) {
+        for (DeclaracionesJuradas objDeclaracionJurada : BDDeclaracionJurada.simularDataDeclaracionJurada()) {
+            if (objDeclaracionJurada.getNumero() == declaracionJurada) {
+                BDDeclaracionJurada.eliminarDeclaracionJuradaBD(objDeclaracionJurada);
+                return;
+            }
+        }        
     }
         
 }

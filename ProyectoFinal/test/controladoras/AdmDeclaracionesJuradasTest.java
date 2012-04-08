@@ -4,7 +4,7 @@
  */
 package controladoras;
 
-import modelos.Empleado;
+import modelos.Usuario;
 import static org.junit.Assert.*;
 import org.junit.Test;
 
@@ -28,18 +28,16 @@ public class AdmDeclaracionesJuradasTest {
     
     @Test
     public void registroUsuarioDeclaracionJurada() {
-        Empleado empleado1 = new Empleado("Empleado 1");
+        Usuario usuario1 = new Usuario("luisc", "1234", "", "", "", "", "", "", "");
         admDeclaracionesJuradas.registrarDeclaracionJurada(1, "Luis Caiguaraico", "Declaración", "25/03/2012");
-        admDeclaracionesJuradas.registrarUsuarioDeclaracionJurada(1, empleado1);
+        admDeclaracionesJuradas.registrarUsuarioDeclaracionJurada(1, "luisc");
         assertEquals(1, admDeclaracionesJuradas.cantidadUsuariosDeclaracionJurada(1));
     }
     
     @Test
     public void eliminacionUsuarioDeclaracionJurada() {
-        Empleado empleado1 = new Empleado("Empleado 1");
-        admDeclaracionesJuradas.registrarUsuarioDeclaracionJurada(1, empleado1);
-        admDeclaracionesJuradas.eliminarUsuarioDeclaracionJurada(1, empleado1);
-        assertEquals(1, admDeclaracionesJuradas.cantidadUsuariosDeclaracionJurada(1));
+        admDeclaracionesJuradas.eliminarUsuarioDeclaracionJurada(1, "luisc");
+        assertEquals(0, admDeclaracionesJuradas.cantidadUsuariosDeclaracionJurada(1));
     }
     
     @Test

@@ -4,6 +4,7 @@
  */
 package controladoras;
 
+import modelos.Usuario;
 import static org.junit.Assert.*;
 import org.junit.Test;
         
@@ -13,22 +14,25 @@ public class AdmUsuariosTest {
             
     @Test
     public void registroUsuario() {
-        admUsuarios.registrarUsuario("luisc", "1234");
+        Usuario usuario1 = new Usuario("luisc", "1234", "", "", "", "", "", "", "");
         assertEquals(1, admUsuarios.cantidadUsuarios());
     }   
     
     @Test
     public void eliminoUsuario() {
-        admUsuarios.registrarUsuario("luisc", "1234");
-        admUsuarios.registrarUsuario("miguela", "0000");        
+        Usuario usuario2 = new Usuario("luisc", "1234", "", "", "", "", "", "", "");
         admUsuarios.eliminarUsuario("luisc");
         assertEquals(1, admUsuarios.cantidadUsuarios());
     }        
     
     @Test
     public void validaUsuarioContrasenha() {
-        admUsuarios.registrarUsuario("luisc", "1234");
-        assertTrue(admUsuarios.validaUsuarioContrasenha("luisc", "1234"));
+        assertTrue(admUsuarios.validaIngreso("luisc", "1234"));
+    }
+    
+    @Test
+    public void verificaExistenciaUsuario() {
+        assertTrue(admUsuarios.verificaUsuario("luisc"));
     }
     
 }

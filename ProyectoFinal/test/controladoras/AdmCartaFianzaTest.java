@@ -4,8 +4,7 @@
  */
 package controladoras;
 
-import BaseDatos.BDCartaFianza;
-import modelos.Empleado;
+import modelos.Usuario;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -30,18 +29,15 @@ public class AdmCartaFianzaTest {
     
     @Test
     public void registroUsuarioCartaFianza() {
-        Empleado empleado1 = new Empleado("Empleado 1");
-        Empleado empleado2 = new Empleado("Empleado 2");                
+        Usuario usuario1 = new Usuario("luisc", "1234", "", "", "", "", "", "", "");               
         admCartaFianza.registrarCartaFianza(1, "Proveedor 1");
-        admCartaFianza.registrarUsuarioCartaFianza(1, empleado1);
+        admCartaFianza.registrarUsuarioCartaFianza(1, "luisc");
         assertEquals(1, admCartaFianza.cantidadUsuariosCartaFianza(1));
     }
 
     @Test
     public void eliminacionUsuarioCartaFianza() {
-        Empleado empleado1 = new Empleado("Empleado 1");
-        admCartaFianza.registrarUsuarioCartaFianza(1, empleado1);        
-        admCartaFianza.eliminarUsuarioCartaFianza(1, empleado1);
+        admCartaFianza.eliminarUsuarioCartaFianza(1, "luisc");
         assertEquals(1, admCartaFianza.cantidadUsuariosCartaFianza(1));
     }  
     

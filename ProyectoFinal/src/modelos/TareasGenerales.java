@@ -10,7 +10,7 @@ public class TareasGenerales extends Tarea {
     private String fechaVencimiento;
     private String responsable;
     private String comentario;
-    private ArrayList<Empleado> arEmpleadoNotificacion;
+    private ArrayList<Usuario> arUsuariosNotificacion;
 
     public String getAsunto() {
         return asunto;
@@ -34,36 +34,41 @@ public class TareasGenerales extends Tarea {
         this.asunto = asunto;
         this.fechaVencimiento = fechaVencimiento;
         this.responsable = responsable;
-        arEmpleadoNotificacion = new ArrayList<Empleado>();
+        arUsuariosNotificacion = new ArrayList<Usuario>();
     }
     
     public static ArrayList<TareasGenerales> getTareasGenerales() {
         return BDTareasGenerales.simularDataTareasGenerales();
     }
     
-    public static void elminarTareaGeneral(TareasGenerales tareaGeneral) {
-        BDTareasGenerales.eliminarTareasGeneralesBD(tareaGeneral);
+    public static void elminarTareaGeneral(int tareaGeneral) {
+        for (TareasGenerales objTareaGeneral : BDTareasGenerales.simularDataTareasGenerales()) {
+            if (objTareaGeneral.getNumeroTareaGeneral() == tareaGeneral) {
+                BDTareasGenerales.eliminarTareasGeneralesBD(objTareaGeneral);
+                return;
+            }
+        }        
     }
 
     public int getNumeroTareaGeneral() {
         return numeroTareaGeneral;
     }
     
-    public void registrarEmpleadoNotificacion(Empleado empleado) {
-        arEmpleadoNotificacion.add(empleado);
+    public void registrarUsuariosNotificacion(String usuario) {        
+        arUsuariosNotificacion.add(Usuario.buscarUsuario(usuario));
     }
     
-    public void elminarEmpleadoNotificacion(Empleado empleado) {
-        for (Empleado empleadoLista : arEmpleadoNotificacion) {
-            if (empleadoLista == empleado) {
-                arEmpleadoNotificacion.remove(empleado);
+    public void elminarUsuariosNotificacion(String usuario) {        
+        for (Usuario objUsuarios : arUsuariosNotificacion) {
+            if (objUsuarios.getUsuario().equals(usuario)) {
+                arUsuariosNotificacion.remove(objUsuarios);
                 return;
             }
         }
     }
     
-    public ArrayList<Empleado> getEmpleadoNotificacion() {
-        return arEmpleadoNotificacion;
+    public ArrayList<Usuario> getUsuarioNotificacion() {
+        return arUsuariosNotificacion;
     }        
     
 }

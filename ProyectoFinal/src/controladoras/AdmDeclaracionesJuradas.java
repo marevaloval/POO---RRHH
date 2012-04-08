@@ -2,7 +2,7 @@ package controladoras;
 
 import java.util.ArrayList;
 import modelos.DeclaracionesJuradas;
-import modelos.Empleado;
+import modelos.Usuario;
 
 public class AdmDeclaracionesJuradas {    
     
@@ -25,7 +25,7 @@ public class AdmDeclaracionesJuradas {
     
     // Eliminar declaración jurada
     public void eliminarDeclaracionJurada(int numeroDeclaracionJurada) {        
-        DeclaracionesJuradas.elminarDeclaracionJurada(buscaDeclaracionJurada(numeroDeclaracionJurada));
+        DeclaracionesJuradas.elminarDeclaracionJurada(numeroDeclaracionJurada);
     }
     
     // Cantidad de declaraciones juradas
@@ -34,23 +34,23 @@ public class AdmDeclaracionesJuradas {
     }
     
     // Registrar un usuario en una declaración jurada
-    public void registrarUsuarioDeclaracionJurada(int numeroDeclaracionJurada, Empleado usuario) {
-        buscaDeclaracionJurada(numeroDeclaracionJurada).registrarEmpleadoNotificacion(usuario);
+    public void registrarUsuarioDeclaracionJurada(int numeroDeclaracionJurada, String usuario) {
+        buscaDeclaracionJurada(numeroDeclaracionJurada).registrarUsuariosNotificacion(usuario);
     }
     
     // Eliminar usuario en una declaración jurada
-    public void eliminarUsuarioDeclaracionJurada(int numeroDeclaracionJurada, Empleado usuario) {
-        buscaDeclaracionJurada(numeroDeclaracionJurada).elminarEmpleadoNotificacion(usuario);
+    public void eliminarUsuarioDeclaracionJurada(int numeroDeclaracionJurada, String usuario) {
+        buscaDeclaracionJurada(numeroDeclaracionJurada).elminarUsuariosNotificacion(usuario);
     }
     
     // Cantidad de usuario en una declaración jurada
     public int cantidadUsuariosDeclaracionJurada(int numeroDeclaracionJurada) {
-        return buscaDeclaracionJurada(numeroDeclaracionJurada).getEmpleadoNotificacion().size();
+        return buscaDeclaracionJurada(numeroDeclaracionJurada).getUsuarioNotificacion().size();
     }
     
     // Mostrar usuarios de una declaración jurada
-    private ArrayList<Empleado> mostrarUsuariosDeclaracionJurada(int numeroDeclaracionJurada) {
-        return buscaDeclaracionJurada(numeroDeclaracionJurada).getEmpleadoNotificacion();
+    private ArrayList<Usuario> mostrarUsuariosDeclaracionJurada(int numeroDeclaracionJurada) {
+        return buscaDeclaracionJurada(numeroDeclaracionJurada).getUsuarioNotificacion();
     }
     
     private DeclaracionesJuradas buscaDeclaracionJurada(int numero) {

@@ -12,7 +12,7 @@ public class CartaFianza extends Tarea {
     private int numeroCartaFianza;
     private String proveedor;
     
-    private ArrayList<Empleado> arEmpleadoNotificacion;    
+    private ArrayList<Usuario> arUsuariosNotificacion;    
     private int numeroContrato;
     private String bancoEmisor;
     private String tipo;    
@@ -27,7 +27,7 @@ public class CartaFianza extends Tarea {
         super("Carta Fianza");
         this.numeroCartaFianza = numeroCartaFianza;
         this.proveedor = proveedor;
-        arEmpleadoNotificacion = new ArrayList<Empleado>();
+        arUsuariosNotificacion = new ArrayList<Usuario>();
         BDCartaFianza.agregarCartaFianzaBD(this);
     }    
     
@@ -47,21 +47,21 @@ public class CartaFianza extends Tarea {
         this.proveedor = proveedor;
     }    
     
-    public void registrarEmpleadoNotificacion(Empleado empleado) {
-        arEmpleadoNotificacion.add(empleado);
+    public void registrarUsuariosNotificacion(String usuario) {
+        arUsuariosNotificacion.add(Usuario.buscarUsuario(usuario));
     }
     
-    public void elminarEmpleadoNotificacion(Empleado empleado) {
-        for (Empleado empleadoLista : arEmpleadoNotificacion) {
-            if (empleadoLista == empleado) {
-                arEmpleadoNotificacion.remove(empleado);
+    public void elminarUsuariosNotificacion(String usuario) {
+        for (Usuario objUsuarios : arUsuariosNotificacion) {
+            if (objUsuarios.getUsuario().equals(usuario)) {
+                arUsuariosNotificacion.remove(objUsuarios);
                 return;
             }
         }
     }
     
-    public ArrayList<Empleado> getEmpleadoNotificacion() {
-        return arEmpleadoNotificacion;
+    public ArrayList<Usuario> getUsuarioNotificacion() {
+        return arUsuariosNotificacion;
     }
     
     public String getBancoEmisor() {
@@ -116,8 +116,13 @@ public class CartaFianza extends Tarea {
         return BDCartaFianza.simularDataCartaFianza();
     }
     
-    public static void elminarCartaFianza(CartaFianza cartaFianza) {
-        BDCartaFianza.eliminarCartaFianzaBD(cartaFianza);
+    public static void elminarCartaFianza(int cartaFianza) {
+        for (CartaFianza objCartaFianza : BDCartaFianza.simularDataCartaFianza()) {
+            if (objCartaFianza.getNumeroCartaFianza() == cartaFianza) {
+                BDCartaFianza.eliminarCartaFianzaBD(objCartaFianza);
+                return;
+            }
+        }        
     }
 
     public boolean getTareaAsignada() {

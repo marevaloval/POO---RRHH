@@ -4,42 +4,52 @@
  */
 package controladoras;
 
-import modelos.Usuario;
 import java.util.ArrayList;
+import modelos.Usuario;
 
-public class AdmUsuarios {
-        
-    ArrayList<Usuario> arUsuario;
-
-    public AdmUsuarios() {
-        arUsuario = new ArrayList<Usuario>();
-    }
+public class AdmUsuarios {        
     
     // Registrar usuario
-    public void registrarUsuario(String usuario, String contrasenha) {
-        Usuario objUsuario = new Usuario(usuario, contrasenha);
-        arUsuario.add(objUsuario);
+    public void registrarUsuario(String usuario, String contrasenha, String dni, String nombre, 
+                                 String apellidoPaterno, String apellidoMaterno, String correo, String fechaIngreso,
+                                 String Cargo, int rol) {
+        
+        // Registro de usuario
+        Usuario objUsuario = new Usuario(usuario, contrasenha, nombre, apellidoPaterno, apellidoMaterno, correo, 
+                                         fechaIngreso, Cargo, dni);        
     }
     
     // Eliminar usuaro
-    public void eliminarUsuario(String usuario) {
-        arUsuario.remove(buscaUsuario(usuario));
+    public void eliminarUsuario(String usuario) {      
+        Usuario.eliminarUsuario(usuario);
     }
     
     // Devuelve la cantidad de usuarios ingresados
     public int cantidadUsuarios() {
-        return arUsuario.size();
+        return Usuario.getUsuarios().size();
     }
     
-    // Valida que el usuario/contraseña exista
-    public boolean validaUsuarioContrasenha(String usuario, String contrasenha) {
-        for (Usuario user: arUsuario) {
-            if (user.getUsuario().equals(usuario) && user.getContrasenha().equals(contrasenha)) {
-                return true;
-            }
-        }
-        return false;
+    public ArrayList<Usuario> mostrarUsuarios() {
+        return Usuario.getUsuarios();
+    }
+    
+    // Verifica si el usuario existe
+    public boolean verificaUsuario(String usuario) {        
+        if (Usuario.verificaExistenciaUsuario(usuario) == true) {
+            return true;
+        } else {
+            return false;
+        }        
     }    
+    
+    // Valida que el usuario/contraseña exista
+    public boolean validaIngreso(String usuario, String contrasenha) {        
+        if (Usuario.validaUsuarioContrasenha(usuario, contrasenha) == true) {
+            return true;
+        } else {
+            return false;
+        }        
+    }            
     
     // Valida que el usuario ingresado no sea vacío
     private boolean validaUsuario(String usuario) {
@@ -57,15 +67,6 @@ public class AdmUsuarios {
         } else {
             return true;
         }                
-    }        
-       
-    private Usuario buscaUsuario(String usuario) {
-        for (Usuario objUsuario : arUsuario) {
-            if (objUsuario.getUsuario().equals(usuario)) {
-                return objUsuario;
-            }
-        }        
-        return null;
-    }
+    }               
     
 }
