@@ -32,4 +32,8 @@ public class BDTareasGenerales {
         }
     }
     
+    public static void limpiarBD() {
+        arTareasGenerales.clear();;
+    }      
+    
 }

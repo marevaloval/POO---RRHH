@@ -7,8 +7,6 @@ public class TareasGenerales extends Tarea {
     
     private int numeroTareaGeneral;
     private String asunto;
-    private String fechaVencimiento;
-    private String responsable;
     private String comentario;
     private ArrayList<Usuario> arUsuariosNotificacion;
 
@@ -29,11 +27,9 @@ public class TareasGenerales extends Tarea {
     }
 
     public TareasGenerales(int numeroTareaGeneral, String asunto, String fechaVencimiento, String responsable) {
-        super("Tareas Generales");
+        super("Tareas Generales",fechaVencimiento,responsable);
         this.numeroTareaGeneral = numeroTareaGeneral;
         this.asunto = asunto;
-        this.fechaVencimiento = fechaVencimiento;
-        this.responsable = responsable;
         arUsuariosNotificacion = new ArrayList<Usuario>();
     }
     

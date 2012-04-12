@@ -15,8 +15,8 @@ public class BDCartaFianza {
         return arCartaFianza;
     }
     
-    public static void agregarCartaFianzaBD(CartaFianza cartaFianza) {
-        arCartaFianza.add(cartaFianza);
+    public static void agregarCartaFianzaBD(CartaFianza objCartaFianza) {
+        arCartaFianza.add(objCartaFianza);
     }            
     
     public static void eliminarCartaFianzaBD(CartaFianza cartaFianza) {
@@ -27,5 +27,9 @@ public class BDCartaFianza {
             }
         }
     }    
+    
+    public static void limpiarBD() {
+        arCartaFianza.clear();;
+    }
     
 }

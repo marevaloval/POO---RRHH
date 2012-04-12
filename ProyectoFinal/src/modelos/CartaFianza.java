@@ -5,6 +5,7 @@
 package modelos;
 
 import BaseDatos.BDCartaFianza;
+import BaseDatos.BDUsuario;
 import java.util.ArrayList;
 
 public class CartaFianza extends Tarea {
@@ -18,13 +19,10 @@ public class CartaFianza extends Tarea {
     private String tipo;    
     private int numeroProcesoSeleccion;
     private double importe;
-    private String  fechaVencimiento;
-    private String responsable;
     private String comentario;   
-    private boolean tareaAsignada;
 
-    public CartaFianza(int numeroCartaFianza, String proveedor) {
-        super("Carta Fianza");
+    public CartaFianza(int numeroCartaFianza, String proveedor, String fechaVencimiento, String responsable) {
+        super("Tareas Generales",fechaVencimiento,responsable);
         this.numeroCartaFianza = numeroCartaFianza;
         this.proveedor = proveedor;
         arUsuariosNotificacion = new ArrayList<Usuario>();
@@ -51,7 +49,7 @@ public class CartaFianza extends Tarea {
         arUsuariosNotificacion.add(Usuario.buscarUsuario(usuario));
     }
     
-    public void elminarUsuariosNotificacion(String usuario) {
+    public void elminarUsuariosNotificacion(String usuario) {     
         for (Usuario objUsuarios : arUsuariosNotificacion) {
             if (objUsuarios.getUsuario().equals(usuario)) {
                 arUsuariosNotificacion.remove(objUsuarios);
@@ -123,14 +121,6 @@ public class CartaFianza extends Tarea {
                 return;
             }
         }        
-    }
-
-    public boolean getTareaAsignada() {
-        return tareaAsignada;
-    }
-
-    public void setTareaAsignada(boolean tareaAsignada) {
-        this.tareaAsignada = tareaAsignada;
     }
     
 }

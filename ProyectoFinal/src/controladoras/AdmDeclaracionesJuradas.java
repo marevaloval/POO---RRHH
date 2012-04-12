@@ -20,7 +20,7 @@ public class AdmDeclaracionesJuradas {
         if (verificarFechaVencimiento(fechaVencimiento) == false) {
             return;
         }                
-        DeclaracionesJuradas objDeclaracionJurada = new DeclaracionesJuradas(numeroDeclaracionJurada, responsable, motivo, fechaVencimiento);
+        DeclaracionesJuradas objDeclaracionJurada = new DeclaracionesJuradas(numeroDeclaracionJurada, fechaVencimiento, responsable);
     }
     
     // Eliminar declaración jurada
@@ -191,12 +191,12 @@ public class AdmDeclaracionesJuradas {
     
     // Aginación de tarea de declaración jurada
     public void asignarTareaDeclaracionJurada(int numeroDeclaracionJurada) {
-        buscaDeclaracionJurada(numeroDeclaracionJurada).setTareaAsignada(true);
+        buscaDeclaracionJurada(numeroDeclaracionJurada).setAsignada(true);
     }
     
     // Mostrar valor de verdad de la asignación de declaración jurada
     public boolean mostrarTareaAsignada(int numeroDeclaracionJurada) {
-        return buscaDeclaracionJurada(numeroDeclaracionJurada).getTareaAsignada();
+        return buscaDeclaracionJurada(numeroDeclaracionJurada).getAsignada();
     }
     
 }

@@ -28,4 +28,8 @@ public class BDRol {
         }
     }    
     
+    public static void limpiarBD() {
+        arRoles.clear();;
+    }        
+    
 }

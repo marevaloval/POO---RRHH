@@ -31,6 +31,7 @@ public class Usuario {
         this.cargo = cargo;
         this.dni = dni;
         this.rol = rol;
+        BDUsuario.agregarUsuarioBD(this);
     }
 
     public String getApellidoMaterno() {

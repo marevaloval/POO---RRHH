@@ -6,7 +6,6 @@ import java.util.ArrayList;
 public class DeclaracionesJuradas extends Tarea {
     
     private int numero;
-    private String responsable;
     private String motivo;
     private ArrayList<Usuario> arUsuariosNotificacion;
     
@@ -18,15 +17,12 @@ public class DeclaracionesJuradas extends Tarea {
     private String publicacion;
     private String fechaDocumento;
     private String numeroDocumento;
-    private boolean tareaAsignada;
 
-    public DeclaracionesJuradas(int numero, String responsable, String motivo, String fechaVencimiento) {
-        super("Declaración Jurada");
+    public DeclaracionesJuradas(int numero, String fechaVencimiento, String responsable) {
+        super("Tareas Generales",fechaVencimiento,responsable);
         super.setFechaVencimiento(fechaVencimiento);
         super.setResponsable(responsable);
         this.numero = numero;
-        this.responsable = responsable;
-        this.motivo = motivo;
         arUsuariosNotificacion = new ArrayList<Usuario>();
         BDDeclaracionJurada.agregarDeclaracionJuradaBD(this);
     }
@@ -126,14 +122,6 @@ public class DeclaracionesJuradas extends Tarea {
 
     public void setTipo(String tipo) {
         this.tipo = tipo;
-    }
-
-    public boolean getTareaAsignada() {
-        return tareaAsignada;
-    }
-
-    public void setTareaAsignada(boolean tareaAsignada) {
-        this.tareaAsignada = tareaAsignada;
     }
     
     public static ArrayList<DeclaracionesJuradas> getDeclaracionesJuradas() {

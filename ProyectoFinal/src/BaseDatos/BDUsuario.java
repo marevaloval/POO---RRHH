@@ -28,4 +28,8 @@ public class BDUsuario {
         }
     }
     
+    public static void limpiarBD() {
+        arUsuarios.clear();
+    }
+    
 }

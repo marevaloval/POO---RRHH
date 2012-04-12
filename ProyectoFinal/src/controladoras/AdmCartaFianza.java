@@ -10,14 +10,14 @@ import modelos.Usuario;
 
 public class AdmCartaFianza {
         
-    public void registrarCartaFianza(int numeroCartaFianza, String proveedor) {
+    public void registrarCartaFianza(int numeroCartaFianza, String proveedor, String fechaVencimiento, String responsable) {
         if (verificarNumeroCartaFianza(numeroCartaFianza) == false) {
             return;
         }
         if (verificarProveedor(proveedor) == false) {
             return;
         }
-        CartaFianza objCartaFianza = new CartaFianza(numeroCartaFianza, proveedor);
+        CartaFianza objCartaFianza = new CartaFianza(numeroCartaFianza, proveedor, fechaVencimiento, responsable);
     }
     
     // Validar que el numero de la carta fianza no sea vacío
@@ -44,13 +44,13 @@ public class AdmCartaFianza {
         return CartaFianza.getCartasFianzas().size();
     }
     
-    private CartaFianza buscaCartaFianza(int numeroCartaFianza) {
-        for (CartaFianza objCartaFianza: CartaFianza.getCartasFianzas()) {
+    public CartaFianza buscaCartaFianza(int numeroCartaFianza) {
+        for (CartaFianza objCartaFianza: CartaFianza.getCartasFianzas()) {            
             if (objCartaFianza.getNumeroCartaFianza() == numeroCartaFianza) {
-                return objCartaFianza;
+                return objCartaFianza;                                
             }
         }
-        return null;
+        return null;        
     }
     
     // Registrar un usuario en una carta fianza
@@ -110,13 +110,13 @@ public class AdmCartaFianza {
         }                              
         if (verificarResponsable(buscaCartaFianza(numeroCartaFianza).getResponsable()) == false) {
             return;
-        }                                      
-        buscaCartaFianza(numeroCartaFianza).setTareaAsignada(true);
+        }                                              
+        buscaCartaFianza(numeroCartaFianza).setAsignada(true);
     }
     
     // Mostrar valor de verdad de la asignación de declaración jurada
     public boolean mostrarTareaAsignada(int numeroCartaFianza) {
-        return buscaCartaFianza(numeroCartaFianza).getTareaAsignada();
+        return buscaCartaFianza(numeroCartaFianza).getAsignada();
     }    
     
     // Validar que el número de contrato de la carta fianza no sea cero

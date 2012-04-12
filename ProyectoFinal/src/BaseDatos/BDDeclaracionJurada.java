@@ -29,4 +29,8 @@ public class BDDeclaracionJurada {
         
     }
     
+    public static void limpiarBD() {
+        arDeclaracionJurada.clear();;
+    }    
+    
 }

@@ -13,9 +13,12 @@ public class Tarea {
     private String nombreTarea;
     private String fechaVencimiento;
     private String responsable;
+    private boolean asignada;
 
-    public Tarea(String nombreTarea) {
+    public Tarea(String nombreTarea, String fechaVencimiento, String responsable) {
         this.nombreTarea = nombreTarea;
+        this.fechaVencimiento = fechaVencimiento;
+        this.responsable = responsable;
     }
 
     public String getFechaVencimiento() {
@@ -36,6 +39,14 @@ public class Tarea {
 
     public void setResponsable(String responsable) {
         this.responsable = responsable;
+    }
+
+    public boolean getAsignada() {
+        return asignada;
+    }
+
+    public void setAsignada(boolean asignada) {
+        this.asignada = asignada;
     }        
     
 }
