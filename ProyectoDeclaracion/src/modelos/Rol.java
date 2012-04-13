@@ -75,4 +75,5 @@ public class Rol {
         return BDRol.simularDataRoles();
     }
     
+
 }

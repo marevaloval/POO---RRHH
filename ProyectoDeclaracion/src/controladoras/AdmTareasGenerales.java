@@ -1,62 +1,75 @@
 package controladoras;
 
 import java.util.ArrayList;
+import modelos.DeclaracionesJuradas;
 import modelos.Usuario;
 import modelos.TareasGenerales;
 
 public class AdmTareasGenerales {
-    private ArrayList<TareasGenerales> dbTareas = new ArrayList<TareasGenerales>();
+    
+    public void registrarTareaGeneral(int numeroTareaGeneral, String asunto, String fechaVencimiento, String responsable) {
+        if (verificarAsunto(asunto) == false) {
+            return;
+        }
+        if (verificarFechaVencimiento(fechaVencimiento) == false) {
+            return;
+        }        
+        if (verificarResponsable(responsable) == false) {
+            return;
+        }               
+        TareasGenerales objTareasGenerales = new TareasGenerales(numeroTareaGeneral, asunto, fechaVencimiento, responsable);        
+    }
+    
+    public void eliminarTareaGeneral(int numeroTareaGeneral) {        
+        TareasGenerales.elminarTareaGeneral(numeroTareaGeneral);
+    }
+    
+    public int cantidadTareasGenerales() {
+        return TareasGenerales.getTareasGenerales().size();
+    }
         
     public boolean verificarAsunto(String asunto) {
-        if (asunto!=null) {
-            return true;
+        if (asunto.equals("") || asunto == null) {
+            return false;
         }
-        return false;
+        return true;
     }
 
     public boolean verificarFechaVencimiento(String fechaVencimiento) {
-        if (fechaVencimiento!=null) {
-            return true;
+        if (fechaVencimiento.equals("") || fechaVencimiento == null) {
+            return false;
         }
-        return false;
+        return true;
     }
 
     public boolean verificarResponsable(String responsable) {
-        if (responsable!=null) {
-            return true;
+        if (responsable.equals("") || responsable == null) {
+            return false;
         }
-        return false;
+        return true;
     }
     
-    public TareasGenerales existeAsunto(String asunto) {
-        TareasGenerales asuntoEncontrado = null;
-        for (TareasGenerales tareasGenerales : dbTareas) {
-            if (tareasGenerales.getAsunto().equals(asunto)) {
-                asuntoEncontrado = tareasGenerales;
-            }
-        }
-        return asuntoEncontrado;
-    }
-    
-    // Registrar un usuario en una tarea general
-    public void registrarTareaGeneral(int numeroTareaGeneral, String usuario) {
+    public void registrarUsuarioTareaGeneral(int numeroTareaGeneral, String usuario) {
         buscaTareaGeneral(numeroTareaGeneral).registrarUsuariosNotificacion(usuario);
     }
     
-    // Eliminar usuario en una tarea general
     public void eliminarUsuarioTareaGeneral(int numeroTareaGeneral, String usuario) {
         buscaTareaGeneral(numeroTareaGeneral).elminarUsuariosNotificacion(usuario);
     }
     
-    // Cantidad de usuario en una tarea general
     public int cantidadUsuariosTareaGeneral(int numeroTareaGeneral) {
         return buscaTareaGeneral(numeroTareaGeneral).getUsuarioNotificacion().size();
     }
     
-    // Mostrar usuarios de una tarea general
+    // Mostrar usuarios de una declaración jurada
     private ArrayList<Usuario> mostrarUsuariosTareaGeneral(int numeroTareaGeneral) {
         return buscaTareaGeneral(numeroTareaGeneral).getUsuarioNotificacion();
-    }    
+    }
+    
+    /*// Mostrar usuarios de una tarea general
+    private ArrayList<Usuario> mostrarUsuariosTareaGeneral(int numeroTareaGeneral) {
+        return buscaTareaGeneral(numeroTareaGeneral).getUsuarioNotificacion();
+    } */   
     
     private TareasGenerales buscaTareaGeneral(int numeroTareaGeneral) {
         for (TareasGenerales objTareaGeneral : TareasGenerales.getTareasGenerales()) {

@@ -4,6 +4,11 @@
  */
 package controladoras;
 
+import BaseDatos.BDDeclaracionJurada;
+import BaseDatos.BDTareasGenerales;
+import modelos.Rol;
+import modelos.TareasGenerales;
+import modelos.Usuario;
 import static org.junit.Assert.*;
 import org.junit.Test;
 
@@ -12,34 +17,89 @@ import org.junit.Test;
  */
 public class AdmTareasGeneralesTest {
     AdmTareasGenerales admTareasGenerales = new AdmTareasGenerales();
+    private int a = 1;
+    @Test
+    public void registroTareasGenerales() {
+        
+        BDTareasGenerales.limpiarBD();
 
+        admTareasGenerales.registrarTareaGeneral(1,"","25/03/2012","Responsable 1");
+        assertEquals(0,admTareasGenerales.cantidadTareasGenerales());
+
+        admTareasGenerales.registrarTareaGeneral(1, "Asunto 1","25/03/2012","Responsable 1");
+        assertEquals(1,admTareasGenerales.cantidadTareasGenerales());     
+        
+    }
+    
+    @Test
+    public void eliminacionTareasGenerales() {
+        
+        BDTareasGenerales.limpiarBD();
+        
+        admTareasGenerales.registrarTareaGeneral(1, "Asunto 1","25/03/2012","Responsable 1");
+        admTareasGenerales.eliminarTareaGeneral(1);
+        assertEquals(0, admTareasGenerales.cantidadTareasGenerales());       
+    }
+        
+    @Test
+    public void registroUsuarioDeclaracionJurada() {
+        
+        BDTareasGenerales.limpiarBD();
+        
+        Rol rol1 = new Rol(1);
+        Usuario usuario1 = new Usuario("bettyp", "1234", "", "", "", "", "", "", "", rol1);
+        admTareasGenerales.registrarTareaGeneral(1, "Asunto 1","25/03/2012","Responsable 1");  
+        admTareasGenerales.registrarUsuarioTareaGeneral(1, "bettyp");
+        assertEquals(1, admTareasGenerales.cantidadUsuariosTareaGeneral(1));
+    }    
+    
+    @Test
+    public void eliminacionUsuarioDeclaracionJurada() {
+        
+        BDTareasGenerales.limpiarBD();
+        
+        Rol rol1 = new Rol(1);
+        Usuario usuario1 = new Usuario("bettyp", "1234", "", "", "", "", "", "", "", rol1);
+        admTareasGenerales.registrarTareaGeneral(1, "Asunto 1","25/03/2012","Responsable 1");  
+        admTareasGenerales.registrarUsuarioTareaGeneral(1, "bettyp");        
+        admTareasGenerales.eliminarUsuarioTareaGeneral(1, "bettyp");
+        assertEquals(0, admTareasGenerales.cantidadUsuariosTareaGeneral(1));
+        
+    }    
+    
     @Test
     public void SiNoIngresoElAsuntoDebeDarError() {
-        assertFalse(admTareasGenerales.verificarAsunto(null));
+        assertFalse(admTareasGenerales.verificarAsunto(""));
         System.out.println("Asunto no puede estar vacio");
     }
 
     @Test
     public void SiNoIngresoLaFechaVencimientoDebeDarError() {
-        assertFalse(admTareasGenerales.verificarFechaVencimiento(null));
+        assertFalse(admTareasGenerales.verificarFechaVencimiento(""));
         System.out.println("Fecha de vencimiento no puede estar vacio");
     }
 
     @Test
     public void SiNoIngresoElResponsableDebeDarError() {
-        assertFalse(admTareasGenerales.verificarResponsable(null));
+        assertFalse(admTareasGenerales.verificarResponsable(""));
         System.out.println("Responsable no puede estar vacio");
-    }
+    } 
     
     @Test
-    public void SiNoExisteAsuntoDebeMandarMensaje() {
-        assertNull(admTareasGenerales.existeAsunto("Asunto006"));
-        System.out.println("Asunto no existe");
-    }
+    public void registroComentarioTareasGenerales() {
+              
+        BDTareasGenerales.limpiarBD();
+        
+        Rol rol1 = new Rol(1);
+        Usuario usuario1 = new Usuario("marcosl", "1234", "", "", "", "", "", "", "", rol1);
+        admTareasGenerales.registrarTareaGeneral(1, "Asunto 1","25/03/2012","Responsable 1");  
+        admTareasGenerales.registrarUsuarioTareaGeneral(1, "marcosl");
 
-    @Test
-    public void SiExisteAsuntoDebeMandarMensaje() {
-        assertNotNull(admTareasGenerales.existeAsunto("Asunto001"));
-        System.out.println("Asunto existe");
-    }
+        if ((TareasGenerales.getTareasGenerales().get(0).getComentario())== "" ){
+            a = 0;
+        }
+        assertEquals(1, a);
+        System.out.println("Ud no ingreso ningun comentario");
+    } 
+    
 }

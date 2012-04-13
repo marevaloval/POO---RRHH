@@ -30,4 +30,7 @@ public class AdmRoles {
         Rol.getRoles();
     }
     
+    public int cantidadRoles() {
+        return Rol.getRoles().size();
+    }
 }

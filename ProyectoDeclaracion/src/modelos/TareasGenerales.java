@@ -31,6 +31,7 @@ public class TareasGenerales extends Tarea {
         this.numeroTareaGeneral = numeroTareaGeneral;
         this.asunto = asunto;
         arUsuariosNotificacion = new ArrayList<Usuario>();
+        BDTareasGenerales.agregarTareasGeneralesBD(this);
     }
     
     public static ArrayList<TareasGenerales> getTareasGenerales() {

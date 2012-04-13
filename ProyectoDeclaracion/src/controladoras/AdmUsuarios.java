@@ -82,6 +82,16 @@ public class AdmUsuarios {
             return false;
         }        
     }            
+    // Valida que los datos ingresados para un usuario X son válidos
+    // este método se usa en administración de usuarios
+    public boolean validacionGeneral(String dni, String nombre, String apellidoPaterno, String apellidoMaterno){
+        if (Usuario.validaGeneral(dni, nombre, apellidoPaterno, apellidoMaterno) == true){
+            return true;
+        } else {
+            return false;
+        }
+        }
+    
     
     // Valida que el usuario ingresado no sea vacío, el formulario lo pide por eso public
     public boolean validaUsuario(String usuario) {
@@ -101,7 +111,7 @@ public class AdmUsuarios {
         }                
     }               
     
-    private boolean validaDni(String dni) {
+    public boolean validaDni(String dni) {
         if (dni.equals("")) {
             return false;
         } else {
@@ -109,7 +119,7 @@ public class AdmUsuarios {
         }                
     }
     
-    private boolean validaNombre(String nombre) {
+    public boolean validaNombre(String nombre) {
         if (nombre.equals("")) {
             return false;
         } else {
@@ -117,7 +127,7 @@ public class AdmUsuarios {
         }                
     }    
 
-    private boolean validaApellidoPaterno(String apellidoPaterno) {
+    public boolean validaApellidoPaterno(String apellidoPaterno) {
         if (apellidoPaterno.equals("")) {
             return false;
         } else {
@@ -125,7 +135,7 @@ public class AdmUsuarios {
         }                
     }        
     
-    private boolean validaApellidoMaterno(String apellidoMaterno) {
+    public boolean validaApellidoMaterno(String apellidoMaterno) {
         if (apellidoMaterno.equals("")) {
             return false;
         } else {

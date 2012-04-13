@@ -4,6 +4,10 @@
  */
 package Vista;
 
+import controladoras.AdmUsuarios;
+import javax.swing.JOptionPane;
+import modelos.Rol;
+import modelos.Usuario;
 /**
  *
  * @author Miguel
@@ -46,8 +50,18 @@ public class frmAdministrarUsuarios extends javax.swing.JFrame {
         setTitle("Administración de usuarios");
 
         btnBuscar.setText("Buscar");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
 
         btnAgregar.setText("Agregar");
+        btnAgregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarActionPerformed(evt);
+            }
+        });
 
         btnEditar.setText("Editar");
         btnEditar.addActionListener(new java.awt.event.ActionListener() {
@@ -63,6 +77,12 @@ public class frmAdministrarUsuarios extends javax.swing.JFrame {
         lblNombre.setText("Nombre");
 
         lblApellidoPaterno.setText("Apellido paterno");
+
+        txtNombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNombreActionPerformed(evt);
+            }
+        });
 
         lblApellidoMaterno.setText("Apellido materno");
 
@@ -132,6 +152,64 @@ public class frmAdministrarUsuarios extends javax.swing.JFrame {
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnEditarActionPerformed
+
+    private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNombreActionPerformed
+
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        String dniIngresado;
+        String nombreIngresado;
+        String apellidoPaternoIngresado;
+        String apellidoMaternoIngresado;
+        dniIngresado = txtDNI.getText();
+        nombreIngresado = txtNombre.getText();
+        apellidoPaternoIngresado = txtApellidoPaterno.getText();
+        apellidoMaternoIngresado = txtApellidoMaterno.getText();
+        AdmUsuarios admUsuarios = new AdmUsuarios();
+        if((!admUsuarios.validaDni(dniIngresado)) || (!admUsuarios.validaNombre(nombreIngresado)) || (!admUsuarios.validaApellidoPaterno(apellidoPaternoIngresado)) || (!admUsuarios.validaApellidoMaterno(apellidoMaternoIngresado))) {
+            JOptionPane.showMessageDialog(rootPane, "Debe ingresar los datos del usuario");
+            if (!admUsuarios.validaDni(dniIngresado)) {
+                txtDNI.requestFocus();
+            }else {
+                if (!admUsuarios.validaNombre(nombreIngresado)) {
+                txtDNI.requestFocus();
+                } else {
+                if (!admUsuarios.validaApellidoPaterno(apellidoPaternoIngresado)) {
+                txtDNI.requestFocus();
+                } else{
+                txtApellidoMaterno.requestFocus();
+            }
+                }
+            }
+        } else {
+            // Verficamos si entran bien los datos
+            if (admUsuarios.validacionGeneral(dniIngresado, nombreIngresado, apellidoPaternoIngresado, apellidoMaternoIngresado)) {
+                JOptionPane.showMessageDialog(rootPane, "Usuario encontrado");
+                //
+                //
+                //
+                //
+                //
+                //
+                //
+                //
+                //
+                //
+                //
+                //
+                //
+                
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "No se encontró tal usuario");
+            }
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAgregarActionPerformed
 
     /**
      * @param args the command line arguments

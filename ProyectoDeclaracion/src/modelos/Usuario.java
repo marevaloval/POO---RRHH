@@ -147,8 +147,17 @@ public class Usuario {
             }
         }
         return false;
-    }    
+    }
     
+    // validación general de un usuario para su administración
+      public static boolean validaGeneral(String dni, String nombre, String apellidoPaterno, String apellidoMaterno) {
+        for (Usuario objUsuario : BDUsuario.simularDataUsuarios()) {
+            if (objUsuario.getDni().equals(dni) && objUsuario.getNombre().equals(nombre) && objUsuario.getApellidoPaterno().equals(apellidoPaterno) && objUsuario.getApellidoMaterno().equals(apellidoMaterno)){
+                return true;
+            }
+        }
+        return false;
+    } 
     public static Usuario buscarUsuario(String usuario) {
         for (Usuario objUsuario : BDUsuario.simularDataUsuarios()) {
             if (objUsuario.getUsuario().equals(usuario)) {
