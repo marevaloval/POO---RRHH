@@ -43,6 +43,9 @@ public class frmAdministrarUsuarios extends javax.swing.JFrame {
         txtApellidoPaterno = new javax.swing.JTextField();
         lblApellidoMaterno = new javax.swing.JLabel();
         txtApellidoMaterno = new javax.swing.JTextField();
+        lblUsuarios = new javax.swing.JLabel();
+        txtUsuarios = new javax.swing.JTextField();
+        btnValidar = new javax.swing.JButton();
 
         jButton1.setText("jButton1");
 
@@ -86,6 +89,15 @@ public class frmAdministrarUsuarios extends javax.swing.JFrame {
 
         lblApellidoMaterno.setText("Apellido materno");
 
+        lblUsuarios.setText("Usuario");
+
+        btnValidar.setText("Validar");
+        btnValidar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnValidarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -106,15 +118,20 @@ public class frmAdministrarUsuarios extends javax.swing.JFrame {
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(lblApellidoMaterno)
                                 .addComponent(lblNombre, javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(lblApellidoPaterno, javax.swing.GroupLayout.Alignment.TRAILING))
+                                .addComponent(lblApellidoPaterno, javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(lblUsuarios, javax.swing.GroupLayout.Alignment.TRAILING))
                             .addComponent(lblDNI))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(txtUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnValidar))
                             .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtDNI, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtApellidoPaterno, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtApellidoMaterno, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(226, Short.MAX_VALUE))
+                .addContainerGap(212, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -141,7 +158,12 @@ public class frmAdministrarUsuarios extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblApellidoMaterno)
                     .addComponent(txtApellidoMaterno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(141, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblUsuarios)
+                    .addComponent(txtUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnValidar))
+                .addContainerGap(107, Short.MAX_VALUE))
         );
 
         getAccessibleContext().setAccessibleParent(jButton1);
@@ -211,6 +233,12 @@ public class frmAdministrarUsuarios extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnAgregarActionPerformed
 
+    private void btnValidarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnValidarActionPerformed
+        String usuarioIngresado;
+        usuarioIngresado = txtUsuarios.getText();
+
+    }//GEN-LAST:event_btnValidarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -257,14 +285,17 @@ public class frmAdministrarUsuarios extends javax.swing.JFrame {
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnEliminar;
+    private javax.swing.JButton btnValidar;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel lblApellidoMaterno;
     private javax.swing.JLabel lblApellidoPaterno;
     private javax.swing.JLabel lblDNI;
     private javax.swing.JLabel lblNombre;
+    private javax.swing.JLabel lblUsuarios;
     private javax.swing.JTextField txtApellidoMaterno;
     private javax.swing.JTextField txtApellidoPaterno;
     private javax.swing.JTextField txtDNI;
     private javax.swing.JTextField txtNombre;
+    private javax.swing.JTextField txtUsuarios;
     // End of variables declaration//GEN-END:variables
 }
