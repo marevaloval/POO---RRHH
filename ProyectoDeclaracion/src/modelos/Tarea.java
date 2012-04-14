@@ -8,7 +8,7 @@ package modelos;
  *
  * @author Sebas
  */
-public class Tarea {
+public abstract class Tarea {
     
     private String nombreTarea;
     private String fechaVencimiento;

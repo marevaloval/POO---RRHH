@@ -37,5 +37,12 @@ public class AdmUsuariosTest {
     public void verificaExistenciaUsuario() {
         assertTrue(admUsuarios.verificaUsuario("luisc"));
     }
+
+    public void usuarioNoPuedeEliminarTransacciones() {
+        Rol rol2 = new Rol(2);
+        Usuario usuario2 = new Usuario("luisc", "1234", "", "", "", "", "", "", "", rol2);
+        usuario2.setTransacciones(true);
+        assertTrue(usuario2.getTransacciones());
+    }
     
 }

@@ -234,9 +234,12 @@ public class frmAdministrarUsuarios extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void btnValidarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnValidarActionPerformed
+        AdmUsuarios admUsuarios = new AdmUsuarios();
         String usuarioIngresado;
         usuarioIngresado = txtUsuarios.getText();
-
+        if (admUsuarios.verificaUsuario(usuarioIngresado)) {
+            JOptionPane.showMessageDialog(rootPane, "Usuario ya existe");
+        }
     }//GEN-LAST:event_btnValidarActionPerformed
 
     /**
